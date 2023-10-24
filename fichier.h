@@ -26,7 +26,7 @@ t_d_cell *create_d_cell(int value, int num_levels);
 
 t_d_list *create_d_list(int max_levels);
 
-void insert_d_cell(t_d_list *list, t_d_cell *cell);
+
 
 void displayCell(t_d_cell *cell);
 void displayList(t_d_list *list);
