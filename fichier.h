@@ -31,4 +31,5 @@ void insert_d_cell(t_d_list *list, t_d_cell *cell);
 void displayCell(t_d_cell *cell);
 void displayList(t_d_list *list);
 void add_cell_in_list(t_d_list *list, t_d_cell *cell);
+void add_head_in_list(t_d_list *list, t_d_cell *cell);
 #endif //GESTIONNAIRE_AGENDA_FICHIER_H

@@ -63,3 +63,45 @@ void displayList(t_d_list *list) {
     }
 
 }
+
+void add_cell_in_list(t_d_list *list, t_d_cell *cell)
+{
+    if ( cell->level > list->max_levels) {
+        return; // on stop la erreur niv de cellule au dessus du max level liste
+    }
+    for (int x = 0; x < cell->level ; x++)
+    {
+        int compteur = 0;
+        t_d_cell* temp = list->heads[x];
+        if (temp->value > cell->value) // cas a part pour le premier élément
+        {
+            cell->next[x] = temp;
+            list->heads[x] = cell;
+            compteur++;
+        }
+        while (temp->next[x] != NULL && compteur ==0)// onva jusqu'au dernier
+        {
+            if (temp->next[x]->value >  cell->value)
+            {
+                cell->next[x] = temp->next[x];
+                temp->next[x]=cell;
+                compteur++;
+            }
+            temp = temp->next[x];
+        }
+        if (compteur==0) // cas ou c'est le dernier élément cad la tail  ( meme si on en a pas )
+        {
+            // temp s'arrete a la derniere case justement pour ce cas.
+            temp->next[x] = cell;
+        }
+        // on fait ca pour tous les niveaux.
+    }
+}
+
+void add_head_in_list(t_d_list *list, t_d_cell *cell)
+{
+    for ( int x = 0; x < cell->level ; x++)
+    {
+        list->heads[x] = cell;
+    }
+}
