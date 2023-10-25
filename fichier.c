@@ -126,3 +126,22 @@ void add_head_in_list(t_d_list *list, t_d_cell *cell)
         list->heads[x] = cell;
     }
 }
+
+void displaynivList(t_d_list* list,int niv)
+{
+    printf("[list head_%d @-]-->", niv);
+    t_d_cell *temp = list->heads[niv];
+    int test=0;
+    while (temp != NULL) {
+        if(niv!=0 && test==0){
+            for(int j = 0; j <list->heads[niv]->level ; j++) {
+                printf("----");
+            }
+            test=1;
+        }
+
+        displayCell(temp);
+        temp = temp->next[niv];
+    }
+    printf("NULL\n");
+}
