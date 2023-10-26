@@ -3,4 +3,6 @@ project(Gestionnaire_Agenda C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(Gestionnaire_Agenda main.c fichier.c fichier.h)
+add_executable(Gestionnaire_Agenda main.c fichier.c fichier.h
+        timer.h
+        timer.c)
