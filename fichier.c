@@ -217,10 +217,21 @@ t_d_list*  createlisttrie(int n){
 }
 
 void ajoutrecursiflist(t_d_list* list, int val, int niv,int puiss)
-{
+{// le principe est d'ajouter du niveaux le plus profond et de remonter comme un arbre avec ses voisins
     if (niv==0) return; // condition d'arrêt
     add_cell_in_list(list,create_d_cell(val,niv));
     printf("ok val : %d",val);
     ajoutrecursiflist(list,val+ pow(2,puiss-1),niv-1,puiss-1);
     ajoutrecursiflist(list,val- pow(2,puiss-1),niv-1,puiss-1);
+}
+
+int rechercheclassique(t_d_list* list, int val)
+{
+    t_d_cell* temp = list->heads[0]; // recherche classique d'un élément au niveau 0
+    while (temp != NULL) // on cherche et on renvoit 0 si on a pas trouvé
+    {
+        if (temp->value == val) return val;
+        temp = temp->next[0];
+    }
+    return 0; // 0 == pas trouvé valeur renvoyé == trouvé
 }

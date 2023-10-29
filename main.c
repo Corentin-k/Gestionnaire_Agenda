@@ -22,6 +22,7 @@ int main() {
     t_d_list* list2 = createlisttrie(4);
     printf("clear");
     displayList(list2);
+    printf("cette valeur est dans la liste :%d", rechercheclassique(list2,20));
 
 
 
