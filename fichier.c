@@ -5,6 +5,7 @@
 #include "fichier.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include<math.h>
 
 //Créer une cellule : on donne sa valeur et le nombre de niveaux que possède cette
 //cellule, pour obtenir un pointeur vers cette cellule
@@ -48,7 +49,7 @@ void displayCell(t_d_cell *cell) {
 }
 void displayList(t_d_list *list) {
     int test=0;
-
+    printf("\n");
     for(int i = 0; i < list->max_levels; i++) {
         printf("[list head_%d @-]", i);
         t_d_cell *temp = list->heads[i];
@@ -207,4 +208,19 @@ void displaylistaligné(t_d_list * list)
         printf("NULL\n");
 
     }
+}
+
+t_d_list*  createlisttrie(int n){
+    t_d_list* list = create_d_list(n+1);
+    ajoutrecursiflist(list, pow(2,n)/2,n,n-1);
+    return list;
+}
+
+void ajoutrecursiflist(t_d_list* list, int val, int niv,int puiss)
+{
+    if (niv==0) return; // condition d'arrêt
+    add_cell_in_list(list,create_d_cell(val,niv));
+    printf("ok val : %d",val);
+    ajoutrecursiflist(list,val+ pow(2,puiss-1),niv-1,puiss-1);
+    ajoutrecursiflist(list,val- pow(2,puiss-1),niv-1,puiss-1);
 }

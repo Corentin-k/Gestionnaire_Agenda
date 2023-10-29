@@ -19,6 +19,10 @@ int main() {
     // Afficher le contenu de la liste
     displayList(list);
 
+    t_d_list* list2 = createlisttrie(4);
+    printf("clear");
+    displayList(list2);
+
 
 
 

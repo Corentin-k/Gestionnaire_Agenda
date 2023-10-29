@@ -34,4 +34,6 @@ void add_cell_in_list(t_d_list *list, t_d_cell *cell);
 void add_head_in_list(t_d_list *list, t_d_cell *cell);
 void displaylistaligné(t_d_list * list);
 void displaynivList(t_d_list* list,int niv);
+t_d_list* createlisttrie(int n);
+void ajoutrecursiflist(t_d_list* list, int val, int niv,int puiss);
 #endif //GESTIONNAIRE_AGENDA_FICHIER_H
