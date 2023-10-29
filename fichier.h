@@ -37,4 +37,6 @@ void displaynivList(t_d_list* list,int niv);
 t_d_list* createlisttrie(int n);
 void ajoutrecursiflist(t_d_list* list, int val, int niv,int puiss);
 int rechercheclassique(t_d_list* list, int val);
+int rechercheintello(t_d_list* list,int val,int niv,t_d_cell* start,t_d_cell* save);
+int rechercheint(t_d_list* list, int val);
 #endif //GESTIONNAIRE_AGENDA_FICHIER_H

@@ -22,8 +22,8 @@ int main() {
     t_d_list* list2 = createlisttrie(4);
     printf("clear");
     displayList(list2);
-    printf("cette valeur est dans la liste :%d", rechercheclassique(list2,20));
-
+    //printf("cette valeur est dans la liste :%d", rechercheclassique(list2,20)); printf("clear %d",list2->max_levels);
+printf("cette valeur est dans la liste tri different :%d", rechercheint(list2,7));
 
 
 

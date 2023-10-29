@@ -211,7 +211,7 @@ void displaylistaligné(t_d_list * list)
 }
 
 t_d_list*  createlisttrie(int n){
-    t_d_list* list = create_d_list(n+1);
+    t_d_list* list = create_d_list(n);
     ajoutrecursiflist(list, pow(2,n)/2,n,n-1);
     return list;
 }
@@ -234,4 +234,33 @@ int rechercheclassique(t_d_list* list, int val)
         temp = temp->next[0];
     }
     return 0; // 0 == pas trouvé valeur renvoyé == trouvé
+}
+int rechercheintello(t_d_list* list,int val,int niv,t_d_cell* start,t_d_cell* save)
+{
+    if (start->value == val ) return val;
+    if (niv == -1) return 0;
+    if (val > start->value)
+    {
+        //printf("%d",start->next[niv-1]->value);
+        rechercheintello(list,val,niv-1,start->next[niv-1],start);
+    }
+    else
+    {
+        if (start == list->heads[niv])
+        {
+            rechercheintello(list,val,niv-1,list->heads[niv-1],save);
+        }
+        else
+        {
+            t_d_cell* temp = save;
+            while (temp->next[niv-1] != start) temp=temp->next[niv-1];
+            rechercheintello(list,val,niv-1,temp,save);
+            //printf("valeur de temp : %d valeur de start : %d",temp->value,start->value);
+        }
+    }
+}
+
+int rechercheint(t_d_list* list, int val)
+{
+    return rechercheintello(list,val,list->max_levels -1 ,list->heads[list->max_levels - 1],list->heads[list->max_levels -1]);
 }
