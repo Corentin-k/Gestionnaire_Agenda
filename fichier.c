@@ -186,3 +186,25 @@ void displaynivList(t_d_list* list,int niv)
     }
     printf("NULL\n");
 }
+
+void displaylistaligné(t_d_list * list)
+{
+    for(int i = 0; i < list->max_levels; i++) {
+        printf("[list head_%d @-]-->", i);
+        t_d_cell *temp = list->heads[i];
+        int test=0;
+        while (temp != NULL) {
+            if(i!=0 && test==0){
+                for(int j = 0; j <list->heads[i]->level ; j++) {
+                    printf("----");
+                }
+                test=1;
+            }
+
+            displayCell(temp);
+            temp = temp->next[i];
+        }
+        printf("NULL\n");
+
+    }
+}
