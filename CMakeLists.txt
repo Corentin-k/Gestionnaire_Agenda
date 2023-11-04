@@ -5,4 +5,7 @@ set(CMAKE_C_STANDARD 23)
 
 add_executable(Gestionnaire_Agenda main.c fichier.c fichier.h
         timer.h
-        timer.c)
+        timer.c
+        research.c
+        research.h
+        research.c)
