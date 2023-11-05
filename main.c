@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include "fichier.h"
 #include "research.h"
+#include "contact.h"
 int main() {
     printf("Hello, test 2!\n");
-
+    printf("Saisie d'une chaîne de caractères : ");
+    char *inputString = scanString();
+    printf("%s",inputString);
     t_d_list *list = create_d_list(5);
     displayList(list);
 

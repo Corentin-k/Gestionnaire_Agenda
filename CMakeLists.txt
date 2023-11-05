@@ -8,4 +8,6 @@ add_executable(Gestionnaire_Agenda main.c fichier.c fichier.h
         timer.c
         research.c
         research.h
-        research.c)
+        research.c
+        contact.c
+        contact.h)
