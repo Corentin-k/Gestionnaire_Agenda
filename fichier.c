@@ -104,11 +104,12 @@ void displayList(t_d_list *list) {
         }
         int nb_espace_requis = 0;
         displayCell(precedent_aficher);
-        
+
         printf("-->NULL\n");
 
 
     }
+
 }
 
 

@@ -4,7 +4,7 @@
 
 #ifndef GESTIONNAIRE_AGENDA_RESEARCH_H
 #define GESTIONNAIRE_AGENDA_RESEARCH_H
-#import "fichier.h"
+#include "fichier.h"
 #include "timer.h"
 int rechercheclassique(t_d_list* list, int val);
 
