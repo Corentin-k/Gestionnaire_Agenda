@@ -140,29 +140,6 @@ void add_cell_in_list(t_d_list *list, t_d_cell *cell)
             cell->next[x] = temp;
             prev->next[x] = cell;
         }
-//          int compteur = 0;
-//        if (temp->value > cell->value) // cas a part pour le premier élément
-//        {
-//            cell->next[x] = temp;
-//            list->heads[x] = cell;
-//            compteur++;
-//        }
-//        while (temp->next[x] != NULL && compteur ==0)// onva jusqu'au dernier
-//        {
-//            if (temp->next[x]->value >  cell->value)
-//            {
-//                cell->next[x] = temp->next[x];
-//                temp->next[x]=cell;
-//                compteur++;
-//            }
-//            temp = temp->next[x];
-//        }
-//        if (compteur==0) // cas ou c'est le dernier élément cad la tail  ( meme si on en a pas )
-//        {
-//            // temp s'arrete a la derniere case justement pour ce cas.
-//            temp->next[x] = cell;
-//        }
-//        // on fait ca pour tous les niveaux.
     }
 }
 
