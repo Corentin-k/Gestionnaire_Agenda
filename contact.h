@@ -30,26 +30,26 @@ typedef struct  rendez_vous{
 typedef struct  s_contact{
     char * nom;
     char *prenom;
+    struct Rendez_vous *rendez_vous;
+    struct Contact *next;
 }Contact;
 
-typedef struct  agenda{
-    Contact * contact;
-    Rendez_vous* rendez_vous; //correspond a
-}agenda;
+
 
 typedef struct  list_contact{
-    Contact * contact;
-
+    Contact **heads; // Tableau de pointeurs vers les têtes de chaque niveau
+    int max_levels;
 }List_contact;
 
 char *scanString();
 
 //fonction qui regarde si le contact existe
-int contactExists(List_contact *listContact);
-
+Contact *contactExists(List_contact *listContact,Contact *contact);
 
 // Fonction pour créer un nouvel contact et l'insère dans la liste listContact
-void add_new_contact(List_contact *listContact);
+void createContact(List_contact *listContact);
+
+void addNewContact(List_contact *listContact, Contact *newContact);
 
 // Fonction pour créer un nouveau rendez-vous pour un contact (et insérer le contact si nécessaire)
 void createRendezVous(List_contact *listContact);
