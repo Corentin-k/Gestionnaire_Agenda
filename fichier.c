@@ -9,7 +9,7 @@
 
 //Créer une cellule : on donne sa valeur et le nombre de niveaux que possède cette
 //cellule, pour obtenir un pointeur vers cette cellule
-t_d_cell *create_d_cell(int value, int nb_levels) {
+t_d_cell *createEmptyCell(int value, int nb_levels) {
 
 
     t_d_cell *cell = malloc(sizeof(t_d_cell));
@@ -28,7 +28,7 @@ t_d_cell *create_d_cell(int value, int nb_levels) {
 
 
 
-t_d_list *create_d_list(int max_levels) {
+t_d_list *createEmptyList(int max_levels) {
     t_d_list *list = malloc(sizeof(t_d_list));
     list->max_levels = max_levels;
     list->heads = (t_d_cell **)malloc(max_levels * sizeof(t_d_cell *));
@@ -176,13 +176,7 @@ void addCellInList(t_d_list *list, t_d_cell *cell)
     }
 }
 
-void addHeadInList(t_d_list *list, t_d_cell *cell)
-{
-    for ( int x = 0; x < cell->level ; x++)
-    {
-        list->heads[x] = cell;
-    }
-}
+
 
 void displayNivList(t_d_list* list,int niv)
 {
@@ -203,30 +197,8 @@ void displayNivList(t_d_list* list,int niv)
     printf("NULL\n");
 }
 
-void displayListAligné(t_d_list * list)
-{
-    for(int i = 0; i < list->max_levels; i++) {
-        printf("[list head_%d @-]-->", i);
-        t_d_cell *temp = list->heads[i];
-        int test=0;
-        while (temp != NULL) {
-            if(i!=0 && test==0){
-                for(int j = 0; j <list->heads[i]->level ; j++) {
-                    printf("----");
-                }
-                test=1;
-            }
-
-            displayCell(temp);
-            temp = temp->next[i];
-        }
-        printf("NULL\n");
-
-    }
-}
-
 t_d_list*  createListTrie(int n){
-    t_d_list* list = create_d_list(n);
+    t_d_list* list = createEmptyList(n);
     ajoutreCursifList(list, pow(2,n)/2,n,n-1);
     return list;
 }
@@ -234,7 +206,7 @@ t_d_list*  createListTrie(int n){
 void ajoutreCursifList(t_d_list* list, int val, int niv,int puiss)
 {// le principe est d'ajouter du niveaux le plus profond et de remonter comme un arbre avec ses voisins
     if (niv==0) return; // condition d'arrêt
-    add_cell_in_list(list,create_d_cell(val,niv));
+    addCellInList(list,createEmptyCell(val,niv));
 
     ajoutreCursifList(list,val+ pow(2,puiss-1),niv-1,puiss-1);
     ajoutreCursifList(list,val- pow(2,puiss-1),niv-1,puiss-1);
@@ -245,7 +217,7 @@ t_d_list createList(int n) {
     int nbCell, niveau;
     t_d_list* listniv;
     t_d_cell *newcell;
-    listniv = create_d_list(n);
+    listniv = createEmptyList(n);
 
     nbCell = (int) pow(2, n) - 1;
 
@@ -258,8 +230,8 @@ t_d_list createList(int n) {
             }
         }
 
-        newcell = create_d_cell((i + 1), niveau);
-        add_cell_in_list(listniv, newcell);
+        newcell = createEmptyCell((i + 1), niveau);
+        addCellInList(listniv, newcell);
     }
 
 

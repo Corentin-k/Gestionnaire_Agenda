@@ -22,17 +22,17 @@ typedef struct s_d_list
     int max_levels; // Nombre maximal de niveaux
 } t_d_list;
 
-t_d_cell *create_d_cell(int value, int num_levels);
+t_d_cell *createEmptyCell(int value, int num_levels);
 
-t_d_list *create_d_list(int max_levels);
+t_d_list *createEmptyList(int max_levels);
 
-t_d_list createlist(int n);
+t_d_list createList(int n);
 
 void displayCell(t_d_cell *cell);
 void displayList(t_d_list *list);
 void addCellInList(t_d_list *list, t_d_cell *cell);
-void addHeadInList(t_d_list *list, t_d_cell *cell);
-void displaylistAligné(t_d_list * list);
+
+
 void displayNivList(t_d_list* list,int niv);
 t_d_list* createListTrie(int n);
 void ajoutreCursifList(t_d_list* list, int val, int niv,int puiss);
