@@ -43,7 +43,6 @@ void displayList(t_d_list *list);
 void addCellInList(t_d_list *list, t_d_cell *cell);
 
 
-void displayNivList(t_d_list* list,int niv);
 
 //Ajoute une cellule dans une liste en la triant par ordre croissant
 t_d_list* createListTrie(int n);

@@ -48,101 +48,43 @@ void displayCell(t_d_cell *cell) {
     printf("--->[ %d|@-]", cell->value);
 }
 void displayList(t_d_list *list) {
-//    int test=0;
-//    printf("\n");
-//    for(int i = 0; i < list->max_levels; i++) {
-//        printf("[list head_%d @-]", i);
-//        t_d_cell *temp = list->heads[i];
-//        t_d_cell *precedent_aficher = NULL;
-//
-//        while (temp != NULL) {
-//            if (i != 0) {
-//                int nb_espace_requis = 0;
-//
-//                // La valeur a afficher est la premiere du niveau donc on compte le nombre d'espace entre la premiere cellule du premier niveaux et la cellule que l'on veut affciher
-//                if (precedent_aficher == NULL) {
-//
-//
-//                    t_d_cell *temp2 = list->heads[0];
-//                    // on regarde donc dans head[0] quelle est la premiere cellule qui est sur le niveau i+1. i+i Car les niveaux commencent à 1 et les indices des niveaux à 0
-//                    while (temp2->level < i + 1 && temp2 != NULL) {
-//
-//                        temp2 = temp2->next[i];
-//                        nb_espace_requis++;
-//                    }
-//                } else {
-//                    //cherche le precdent afficher et compte le nombre d'espace entre le prochain a afficher et affiche le nombre d'espace necessaire
-//
-//                    t_d_cell *temp2 = list->heads[i];
-//
-//                    while (temp2 != precedent_aficher &&
-//                           temp2 != NULL) { // On avance jusqu'a la cellule precedemment afficher
-//
-//                        temp2 = temp2->next[0];
-//                    }
-//
-//                    while (temp2 != temp && temp2 !=
-//                                            NULL) { // On avance jusqu'a la cellule a afficher et on compte donc le nombre d'espace entre ces deux valeurs
-//                        temp2 = temp2->next[0];
-//                        nb_espace_requis++;
-//                    }
-//                    nb_espace_requis--;
-//                }
-//
-//
-//                for (int g = 0; g < nb_espace_requis; g++) {
-//                    printf("-");
-//                    printf("-----------");
-//                }
-//            }
-//            // Affiche la cellule sur le niveau
-//            displayCell(temp);
-//
-//
-//            precedent_aficher = temp;
-//            temp = temp->next[i];
-//        }
-//        int nb_espace_requis = 0;
-//        displayCell(precedent_aficher);
-//
-//        printf("-->NULL\n");
-//
-//
-//    }
-//
-//}
-    t_d_cell * temp, *temp2;
+
+    t_d_cell * temp, *prev;
     for (int i = 0; i <list->max_levels; i++){
         temp = list->heads[i];
-        temp2 = list->heads[0];
+        prev = list->heads[0];
         printf("[list head_%d @-]", i);
-        while (temp != NULL){
-            while (temp->value != temp2->value){
-                if(temp2->value <10){
-                    printf("----------");
+        while (prev != NULL){
+            if (temp!=prev || temp==NULL) {
+
+                ////////////////////////////////Calcul de la taille de la cellule
+                int val = prev->value;
+                int size = 0;
+                if (val < 0) {
+                    size ++;
                 }
-                else{
-                    printf("-----------");
+                do {
+                    size++;
+                    val /= 10;
+                } while (val != 0);
+                ////////////////////////////////////////
+
+                for (int j = 0; j < size+10; j++) { //+10 car on affiche 10 caractères pour chaque cellule [ valeur |@-]
+                    printf("-");
                 }
-                temp2 = temp2->next[0];
+
+            } else {
+                displayCell( temp);
+                temp = temp->next[i];
             }
-            printf("-->[ %d|@-]", temp->value);
-            temp = temp->next[i];
-            temp2 = temp2->next[0];
+            prev = prev->next[0];
+
         }
-        while(temp2!=NULL && temp==NULL){
-            if(temp2->value <10){
-                printf("---");
-            }
-            else{
-                printf("---");
-            }
-            temp2 = temp2->next[0];
-        }
-        printf("-->NULL\n");
+        printf("--->NULL\n");
     }
-    printf("\n");
+
 }
+
 
 
 
@@ -178,24 +120,7 @@ void addCellInList(t_d_list *list, t_d_cell *cell)
 
 
 
-void displayNivList(t_d_list* list,int niv)
-{
-    printf("[list head_%d @-]-->", niv);
-    t_d_cell *temp = list->heads[niv];
-    int test=0;
-    while (temp != NULL) {
-        if(niv!=0 && test==0){
-            for(int j = 0; j <list->heads[niv]->level ; j++) {
-                printf("----");
-            }
-            test=1;
-        }
 
-        displayCell(temp);
-        temp = temp->next[niv];
-    }
-    printf("NULL\n");
-}
 
 t_d_list*  createListTrie(int n){
     t_d_list* list = createEmptyList(n);

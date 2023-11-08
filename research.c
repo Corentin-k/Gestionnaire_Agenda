@@ -68,7 +68,7 @@ void timeSearch(){
         printf("en cours %d\n",i);
 
         t_d_list list = createList(i);
-//        displayList(&list);
+      displayList(&list);
 
         startTimer();
         for(int g=0;g<100000;g++){
