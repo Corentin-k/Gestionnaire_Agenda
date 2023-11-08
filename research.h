@@ -6,10 +6,10 @@
 #define GESTIONNAIRE_AGENDA_RESEARCH_H
 #include "fichier.h"
 #include "timer.h"
-int rechercheclassique(t_d_list* list, int val);
+int rechercheClassique(t_d_list* list, int val);
 
-int rechercheintello(t_d_list* list,int val,int niv,t_d_cell* start,t_d_cell* save);
+int rechercheIntEllo(t_d_list* list,int val,int niv,t_d_cell* start,t_d_cell* save);
 
-int rechercheint(t_d_list* list, int val);
-void timesearch();
+int rechercheInt(t_d_list* list, int val);
+void timeSearch();
 #endif //GESTIONNAIRE_AGENDA_RESEARCH_H

@@ -30,7 +30,7 @@ typedef struct  rendez_vous{
 typedef struct  s_contact{
     char * nom;
     char *prenom;
-    struct Rendez_vous *rendez_vous;
+    struct Rendez_vous **rendez_vous;
     struct Contact *next;
 }Contact;
 

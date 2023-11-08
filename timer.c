@@ -1,9 +1,8 @@
 //
 // Created by flasque on 11/10/2023.
 //
-
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "timer.h"
 
 // start the timer

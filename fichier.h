@@ -26,15 +26,15 @@ t_d_cell *create_d_cell(int value, int num_levels);
 
 t_d_list *create_d_list(int max_levels);
 
-
+t_d_list createlist(int n);
 
 void displayCell(t_d_cell *cell);
 void displayList(t_d_list *list);
-void add_cell_in_list(t_d_list *list, t_d_cell *cell);
-void add_head_in_list(t_d_list *list, t_d_cell *cell);
-void displaylistaligné(t_d_list * list);
-void displaynivList(t_d_list* list,int niv);
-t_d_list* createlisttrie(int n);
-void ajoutrecursiflist(t_d_list* list, int val, int niv,int puiss);
+void addCellInList(t_d_list *list, t_d_cell *cell);
+void addHeadInList(t_d_list *list, t_d_cell *cell);
+void displaylistAligné(t_d_list * list);
+void displayNivList(t_d_list* list,int niv);
+t_d_list* createListTrie(int n);
+void ajoutreCursifList(t_d_list* list, int val, int niv,int puiss);
 
 #endif //GESTIONNAIRE_AGENDA_FICHIER_H
