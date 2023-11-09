@@ -26,6 +26,7 @@ int rechercheInt(t_d_list* list, int val);
 // Fonction qui teste les temps de recherche pour des listes de taille 2^7 à 2^18 et les écrit dans un fichier log.txt
 // En utilisant les deux types de recherche (classique et intelligente)
 void timeSearch();
+void timeSearch2();
 
 
 #endif //GESTIONNAIRE_AGENDA_RESEARCH_H

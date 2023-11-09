@@ -62,13 +62,13 @@ void timeSearch(){
 
     char *time_lvl0;
     char *time_all_levels;
-    for( int i=7;i<19 ;i++) {
+    for( int i=7;i<30 ;i++) {
 
 
         printf("en cours %d\n",i);
 
         t_d_list list = createList(i);
-      displayList(&list);
+
 
         startTimer();
         for(int g=0;g<100000;g++){
@@ -82,6 +82,47 @@ void timeSearch(){
         startTimer();
         for(int g=0;g<100000;g++){
             rechercheInt(&list,g);
+        }
+        stopTimer();
+        time_all_levels = getTimeAsString();
+        displayTime();
+
+        fprintf(log_file, format, i, time_lvl0, time_all_levels);
+        free(time_lvl0);
+        free(time_all_levels);
+    }
+
+    fclose(log_file);
+};
+
+
+void timeSearch2(){
+    srand(time(NULL));
+    FILE *log_file = fopen("log.txt","w");
+    char format[] = "%d\t%s\t%s\n" ;
+
+    char *time_lvl0;
+    char *time_all_levels;
+    for( int i=7;i<30 ;i++) {
+
+
+        printf("en cours %d\n",i);
+
+        t_d_list *list = createListTrie(i);
+
+
+        startTimer();
+        for(int g=0;g<100000;g++){
+            rechercheClassique(list, rand()%100000);
+        }
+        stopTimer();
+        displayTime();
+        time_lvl0 = getTimeAsString();
+
+
+        startTimer();
+        for(int g=0;g<100000;g++){
+            rechercheInt(list,rand()%100000);
         }
         stopTimer();
         time_all_levels = getTimeAsString();

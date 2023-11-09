@@ -23,17 +23,22 @@ void TestlistAligne(){
     // Afficher le contenu de la liste
     displayList(list);
 }
+
+
 int main() {
 
-    TestlistAligne();
+//    t_d_list *list=createListTrie(25);
+//   displayList(list);
+//   t_d_list list2=createList(25);
+//  displayList(&list2);
+//    TestlistAligne();
 //    t_d_list lis = createlist(10);
 //    displayList(&lis);
 //    printf("clear");
 //    printf("cette valeur est dans la liste tri different :%d", rechercheint(list,20));
-//   timeSearch();
-//    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
-
-
+//    timeSearch();
+   timeSearch();
+////    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
 
 
     return 0;

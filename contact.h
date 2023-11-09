@@ -5,7 +5,11 @@
 #ifndef GESTIONNAIRE_AGENDA_CONTACT_H
 #define GESTIONNAIRE_AGENDA_CONTACT_H
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
+#define MAX_LEVEL 4
 
 
 struct  Date{
@@ -37,8 +41,8 @@ typedef struct  s_contact{
 
 
 typedef struct  list_contact{
-    Contact **heads; // Tableau de pointeurs vers les têtes de chaque niveau
-    int max_levels;
+    Contact **contact; // Tableau de pointeurs vers les têtes de chaque niveau
+    int max_contact;
 }List_contact;
 
 char *scanString();

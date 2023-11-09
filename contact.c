@@ -3,9 +3,7 @@
 //
 
 #include "contact.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+
 char *scanString() {
     char texte[201];
 
@@ -20,12 +18,12 @@ char *scanString() {
 
 }
 void addNewContact(List_contact* listContact,Contact * newContact){
-    listContact->heads[0] = newContact;
-
+    listContact->contact[0] = newContact;
+    listContact->max_contact++;
 }
 
 Contact *contactExists(List_contact *listContact,Contact *contact){
-    Contact *temp = listContact->heads[0];
+    Contact *temp = listContact->contact[0];
     while (temp != NULL) {
         if (temp->nom == contact->nom && temp->prenom == contact->prenom)
             return contact;
