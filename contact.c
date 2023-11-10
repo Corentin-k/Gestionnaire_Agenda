@@ -17,12 +17,36 @@ char *scanString() {
     }
 
 }
-void addNewContact(List_contact* listContact,Contact * newContact){
-    listContact->contact[0] = newContact;
-    listContact->max_contact++;
+
+int sizeChar(char* str){
+
+    int size=0;
+    if (str == NULL) {
+        // Gestion du cas où la chaîne est NULL
+        return size;
+    }else{
+        while (str[size] != '\0') {
+            size++;
+        }
+    }return size;
 }
 
-Contact *contactExists(List_contact *listContact,Contact *contact){
+
+
+void addNewContact(List_contact* listContact,Contact * newContact){
+    if(contactExists(listContact,newContact)!=NULL){
+        printf("Le contact existe deja");
+    }
+    else{
+        listContact->contact[0] = newContact;
+        listContact->max_contact++;
+        printf("Le contact a bien ete ajoute");
+    }
+
+
+}
+
+Contact *contactExists(List_contact *listContact,Contact *contact){ //Faire une recherhche par niveau
     Contact *temp = listContact->contact[0];
     while (temp != NULL) {
         if (temp->nom == contact->nom && temp->prenom == contact->prenom)
@@ -31,24 +55,71 @@ Contact *contactExists(List_contact *listContact,Contact *contact){
     }
     return NULL;
 }
-
-void createContact(List_contact *listContact){
+List_contact *createListContact(){
+    List_contact *listContact = malloc(sizeof(List_contact));
+    listContact->contact = (Contact **)malloc(MAX_LEVEL * sizeof(Contact *));
+    for (int i = 0; i < MAX_LEVEL; i++)  { //initialisation des head à NULL
+        listContact->contact[i] = NULL;
+    }
+    return listContact;
+}
+Contact *createContact(){
     Contact *newContact = malloc(sizeof(Contact));
-    printf("Saisir le nom du contact : ");
+    printf("Saisir le nom du contact :\n>>>");
     newContact->nom = scanString();
-    printf("Saisir le prenom du contact : ");
+
+    printf("Saisir le prenom du contact :\n>>>");
     newContact->prenom = scanString();
     newContact->rendez_vous = NULL;
     newContact->next = NULL;
-    if(contactExists(listContact,newContact)!=NULL){
-        printf("Le contact existe deja");
-    }
-    else{
-        addNewContact(listContact,newContact);
-        printf("Le contact a bien ete ajoute");
-    }
+    return newContact;
 
 }
+
+//void displayList(List_contact list) {
+//
+//    Contact * temp, *prev;
+//    for (int i = 0; i <list.max_contact; i++){  // on parcourt les niveaux de la liste
+//        temp = list.contact[i];                  // pointeur vers la cellule à afficher
+//        prev = list.contact[0];                  // pointeur vers la cellule précédente
+//        printf("[list head_%d @-]", i);
+//        while (prev != NULL){
+//            if (temp!=prev || temp==NULL) {
+//
+//                ////////////////////////////////Calcul de la taille de la cellule
+//                int size= sizeChar(prev->nom);
+//                ////////////////////////////////
+//
+//                ////////////////////////////////Ajout du bon nombre de tirer si il y a un écart entre les cellules
+//                for (int j = 0; j < size+10; j++) { //+10 car on affiche 10 caractères pour chaque cellule [ valeur |@-]
+//                    printf("-");
+//                }
+//                ////////////////////////////////
+//
+//            } else {
+//
+////                temp = temp->next[i];
+//            }
+////            prev = prev->next[0];
+//
+//        }
+//        printf("--->NULL\n");
+//    }
+//
+//}
+
+void displayContact(Contact contact){
+
+    printf("--------------\n");
+    printf("|   Contact :                \n");
+    printf("|   Nom : %s\n",contact.nom);
+    printf("|   Prenom : %s\n",contact.prenom);
+    printf("|   Rendez-vous :\n");
+//    displayRendezVous(contact);
+    printf("--------------\n");
+
+}
+
 void createRendezVous(List_contact *){
     Rendez_vous *newRV = malloc(sizeof(Rendez_vous));
     printf("Saisir le jour du rendez-vous : ");
@@ -66,4 +137,62 @@ void createRendezVous(List_contact *){
     printf("Saisir l'objet du rendez-vous : ");
     newRV->objet = scanString();
 
+}
+
+
+void displayMenu(List_contact *listContact) {
+    int choice;
+
+    do {
+        printf("-----------------------------------------------------------------\n");
+        printf("|                       Menu:                                   |\n");
+        printf("|             1. Creer un nouveau contact                       |\n");
+        printf("|             2. Ajouter un rendez-vous                         |\n");
+        printf("|             3. Supprimer un rendez-vous                       |\n");
+        printf("|             4. Rechercher un contact                          |\n");
+        printf("|             5. Afficher les rendez-vous d'un contact          |\n");
+        printf("|             6. Sauvegarder dans un fichier                    |\n");
+        printf("|             0. Quitter                                        |\n");
+        printf("-----------------------------------------------------------------\n");
+
+
+        do {
+            printf("Entrez votre choix (0 - 8)\n>>>");
+            if (scanf("%d", &choice) != 1) {
+                while (getchar() != '\n');                      // Si l'entrée n'est pas un entier, on vide le tampon d'entrée
+            } else if (choice < 0 || choice > 5) {
+                printf("Veuillez entrer un nombre valide entre 0 et 6 :\n");// Si l'entier n'est pas dans la plage souhaitée
+            }
+        } while (choice < 0 || choice > 5);
+        printf("\n");
+
+        switch (choice) {
+            case 1:
+//                Contact *new =createContact();
+//                addNewContact(listContact,*new);
+                break;
+            case 2:
+                createRendezVous(listContact);
+                break;
+            case 3:
+//                deleteAppointment(listContact);
+                break;
+            case 4:
+//                searchContact(listContact);
+                break;
+            case 5:
+                // Assuming you want to display appointments for a specific contact
+//                displayRendezVous(*contactExists(listContact,contact));
+                break;
+            case 6:
+                //sacve
+                break;
+            case 0:
+                printf("Au revoir !\n");
+                break;
+            default:
+                printf("Choix non valide. Veuillez réessayer.\n");
+        }
+
+    } while (choice != 0);
 }

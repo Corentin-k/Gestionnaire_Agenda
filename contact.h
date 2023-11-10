@@ -35,7 +35,7 @@ typedef struct  s_contact{
     char * nom;
     char *prenom;
     struct Rendez_vous **rendez_vous;
-    struct Contact *next;
+    struct Contact **next;
 }Contact;
 
 
@@ -46,12 +46,14 @@ typedef struct  list_contact{
 }List_contact;
 
 char *scanString();
-
+int sizeChar(char* str);
 //fonction qui regarde si le contact existe
 Contact *contactExists(List_contact *listContact,Contact *contact);
+void displayContact(Contact contact);
 
+List_contact *createListContact();
 // Fonction pour créer un nouvel contact et l'insère dans la liste listContact
-void createContact(List_contact *listContact);
+Contact *createContact();
 
 void addNewContact(List_contact *listContact, Contact *newContact);
 
@@ -70,5 +72,5 @@ void displayRendezVous(Contact contact);
 // Fonction pour sauvegarder les rendez-vous dans un fichier
 void saveInFile(List_contact listContact);
 
-
+void displayMenu(List_contact *listContact);
 #endif //GESTIONNAIRE_AGENDA_CONTACT_H

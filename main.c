@@ -37,9 +37,12 @@ int main() {
 //    printf("clear");
 //    printf("cette valeur est dans la liste tri different :%d", rechercheint(list,20));
 //    timeSearch();
-   timeSearch();
+//   timeSearch();
 ////    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
-
+    List_contact *listContact;
+    Contact *contact=createContact();
+    displayContact(*contact);
+    displayMenu(listContact);
 
     return 0;
 }
