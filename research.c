@@ -55,6 +55,7 @@ int rechercheInt(t_d_list* list, int val)
 
 // Fonction qui teste les temps de recherche pour des listes de taille 2^7 à 2^18 et les écrit dans un fichier log.txt
 // En utilisant les deux types de recherche (classique et intelligente)
+
 void timeSearch(){
     srand(time(NULL));
     FILE *log_file = fopen("log.txt","w");
@@ -62,48 +63,7 @@ void timeSearch(){
 
     char *time_lvl0;
     char *time_all_levels;
-    for( int i=7;i<30 ;i++) {
-
-
-        printf("en cours %d\n",i);
-
-        t_d_list list = createList(i);
-
-
-        startTimer();
-        for(int g=0;g<100000;g++){
-            rechercheClassique(&list, g);
-        }
-        stopTimer();
-        displayTime();
-        time_lvl0 = getTimeAsString();
-
-
-        startTimer();
-        for(int g=0;g<100000;g++){
-            rechercheInt(&list,g);
-        }
-        stopTimer();
-        time_all_levels = getTimeAsString();
-        displayTime();
-
-        fprintf(log_file, format, i, time_lvl0, time_all_levels);
-        free(time_lvl0);
-        free(time_all_levels);
-    }
-
-    fclose(log_file);
-};
-
-
-void timeSearch2(){
-    srand(time(NULL));
-    FILE *log_file = fopen("log.txt","w");
-    char format[] = "%d\t%s\t%s\n" ;
-
-    char *time_lvl0;
-    char *time_all_levels;
-    for( int i=7;i<30 ;i++) {
+    for( int i=7;i<20 ;i++) {
 
 
         printf("en cours %d\n",i);
@@ -111,9 +71,10 @@ void timeSearch2(){
         t_d_list *list = createListTrie(i);
 
 
+
         startTimer();
         for(int g=0;g<100000;g++){
-            rechercheClassique(list, rand()%100000);
+            rechercheClassique(list,rand() % (100000 - -100000 + 1) + -100000 );
         }
         stopTimer();
         displayTime();
@@ -122,7 +83,7 @@ void timeSearch2(){
 
         startTimer();
         for(int g=0;g<100000;g++){
-            rechercheInt(list,rand()%100000);
+            rechercheInt(list,rand() % (100000 - -100000 + 1) + -100000);
         }
         stopTimer();
         time_all_levels = getTimeAsString();
@@ -131,6 +92,7 @@ void timeSearch2(){
         fprintf(log_file, format, i, time_lvl0, time_all_levels);
         free(time_lvl0);
         free(time_all_levels);
+        free(list);
     }
 
     fclose(log_file);

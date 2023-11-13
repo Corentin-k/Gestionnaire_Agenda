@@ -29,6 +29,7 @@ typedef struct  rendez_vous{
     struct Heure durée;
     struct rendez_vous *next;
     char* objet;
+    struct rendez_vous **next;
 }Rendez_vous;
 
 

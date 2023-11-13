@@ -117,7 +117,7 @@ Contact *createContact(){
 //
 //}
 
-void displayContact(Contact contact){
+void    displayContact(Contact contact){
 
     printf("--------------\n");
     printf("|   Contact :                \n");
