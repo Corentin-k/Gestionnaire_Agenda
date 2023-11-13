@@ -27,14 +27,15 @@ typedef struct  rendez_vous{
     struct Date date;
     struct Heure heure_rendez_vous;
     struct Heure durée;
+    struct rendez_vous *next;
     char* objet;
 }Rendez_vous;
 
 
 typedef struct  s_contact{
     char * nom;
-    char *prenom;
-    struct Rendez_vous **rendez_vous;
+    char * prenom;
+    struct Rendez_vous *rendez_vous;
     struct Contact **next;
 }Contact;
 
@@ -69,6 +70,9 @@ void searchContact(const List_contact *listContact);
 
 // Fonction pour afficher les rendez-vous d'un contact
 void displayRendezVous(Contact contact);
+
+// Fonction pour comparer 2 rendez-vous pour savoir qui est le plus tôt
+int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2);
 
 // Fonction pour sauvegarder les rendez-vous dans un fichier
 void saveInFile(List_contact listContact);
