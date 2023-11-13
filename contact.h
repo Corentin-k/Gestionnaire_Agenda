@@ -47,6 +47,7 @@ typedef struct  list_contact{
 
 char *scanString();
 int sizeChar(char* str);
+int scanInt(int);
 //fonction qui regarde si le contact existe
 Contact *contactExists(List_contact *listContact,Contact *contact);
 void displayContact(Contact contact);
@@ -58,7 +59,7 @@ Contact *createContact();
 void addNewContact(List_contact *listContact, Contact *newContact);
 
 // Fonction pour créer un nouveau rendez-vous pour un contact (et insérer le contact si nécessaire)
-void createRendezVous(List_contact *listContact);
+void createRendezVous(Contact *contact);
 
 // Fonction pour supprimer un rendez-vous pour un contact
 void deleteAppointment(Contact *);

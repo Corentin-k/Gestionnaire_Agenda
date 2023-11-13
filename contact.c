@@ -17,6 +17,15 @@ char *scanString() {
     }
 
 }
+int scanInt(int max) {
+    int num;
+    while (scanf("%d", &num) != 1 || num <0 || num >= max) {
+        // Si la saisie n'est pas un entier, vider le tampon d'entrée
+        while (getchar() != '\n');
+        printf("\nVeuillez saisir un entier valide :\n>>>");
+    }
+    return num;
+}
 
 int sizeChar(char* str){
 
@@ -120,22 +129,23 @@ void displayContact(Contact contact){
 
 }
 
-void createRendezVous(List_contact *){
+void createRendezVous(Contact *contact){
     Rendez_vous *newRV = malloc(sizeof(Rendez_vous));
-    printf("Saisir le jour du rendez-vous : ");
-    newRV->date.jour =0;
-    printf("Saisir le mois du rendez-vous : ");
-    newRV->date.mois =0;
-    printf("Saisir l'annee du rendez-vous : ");
-    newRV->date.annee = 0;
-    printf("Saisir l'heure du rendez-vous : ");
-    newRV->heure_rendez_vous.heure = 0;
-    printf("Saisir les minutes du rendez-vous : ");
-    newRV->heure_rendez_vous.minute =0;
-    printf("Saisir la duree du rendez-vous : ");
-    newRV->durée.heure =0;
-    printf("Saisir l'objet du rendez-vous : ");
+    printf("\nSaisir le jour du rendez-vous :\n>>>");
+    newRV->date.jour =scanInt(32);
+    printf("\nSaisir le mois du rendez-vous :\n>>>");
+    newRV->date.mois =scanInt(13);
+    printf("\nSaisir l'annee du rendez-vous :\n>>>");
+    newRV->date.annee = scanInt(100);
+    printf("\nSaisir l'heure du rendez-vous :\n>>>");
+    newRV->heure_rendez_vous.heure =scanInt(60);
+    printf("\nSaisir les minutes du rendez-vous :\n>>>");
+    newRV->heure_rendez_vous.minute =scanInt(60);
+    printf("\nSaisir la duree du rendez-vous :\n>>>");
+    newRV->durée.heure =scanInt(60);
+    printf("\nSaisir l'objet du rendez-vous :\n>>>");
     newRV->objet = scanString();
+//    addNewRendezVous(contact,newRV);
 
 }
 
