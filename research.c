@@ -73,8 +73,8 @@ void timeSearch(){
 
 
         startTimer();
-        for(int g=0;g<100000;g++){
-            rechercheClassique(list,rand() % (100000 - -100000 + 1) + -100000 );
+        for(int g=0;g<1000000;g++){
+            rechercheClassique(list,rand() % (1000000 - -1000000 + 1) + -1000000 );
         }
         stopTimer();
         displayTime();
@@ -82,8 +82,8 @@ void timeSearch(){
 
 
         startTimer();
-        for(int g=0;g<100000;g++){
-            rechercheInt(list,rand() % (100000 - -100000 + 1) + -100000);
+        for(int g=0;g<1000000;g++){
+            rechercheInt(list,rand() % (1000000 - -1000000 + 1) + -1000000);
         }
         stopTimer();
         time_all_levels = getTimeAsString();
