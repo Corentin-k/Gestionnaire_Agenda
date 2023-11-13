@@ -22,7 +22,6 @@ t_d_cell *createEmptyCell(int value, int nb_levels) {
 
     cell->value = value;
     cell->level = nb_levels;
-
     cell->next = (t_d_cell **)malloc(nb_levels * sizeof(t_d_cell *)); //tableau dynamique de nb_level pointeurs.vers des cellules
 
     for (int i = 0; i < nb_levels; i++) { //initialisation des pointeurs à NULL
