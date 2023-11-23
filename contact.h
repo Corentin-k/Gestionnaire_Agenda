@@ -26,7 +26,7 @@ struct Heure{
 typedef struct  rendez_vous{
     struct Date date;
     struct Heure heure_rendez_vous;
-    struct Heure durée;
+    struct Heure duree;
     struct rendez_vous *next;
     char* objet;
 
@@ -60,6 +60,7 @@ Contact *createContact();
 
 void addNewContact(List_contact *listContact, Contact *newContact);
 
+void addNewContacttemp(List_contact *listContact, Contact *newContact);
 // Fonction pour créer un nouveau rendez-vous pour un contact (et insérer le contact si nécessaire)
 void createRendezVous(Contact *contact);
 
@@ -70,7 +71,7 @@ void deleteAppointment(Contact *);
 void searchContact(const List_contact *listContact);
 
 // Fonction pour afficher les rendez-vous d'un contact
-void displayRendezVous(Contact contact);
+void displayRendezVous(Rendez_vous*  rdv);
 
 // Fonction pour comparer 2 rendez-vous pour savoir qui est le plus tôt
 int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2);

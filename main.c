@@ -75,13 +75,16 @@ int main() {
 //    timeSearch();
 //   timeSearch();
 ////    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
-//    List_contact *listContact;
+   List_contact *listContact =createListContact();
 //    //ouvrir le fichier sauvegarder si il existe etcréer la liste des contacts
-//    Contact *contact=createContact();
-//    displayContact(*contact);
-//
-//    displayMenu(listContact);
-    timeSearch();
+    //Contact *contact=createContact();
+    //createRendezVous(contact);
+    //displayRendezVous(contact->rendez_vous);
+    //createRendezVous(contact);
+    //displayContact(*contact);
+
+    displayMenu(listContact);
+    //timeSearch();
 
     return 0;
 }
