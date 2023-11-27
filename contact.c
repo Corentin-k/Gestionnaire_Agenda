@@ -250,23 +250,3 @@ void addNewContacttemp(List_contact *listContact, Contact *newContact)
         temp->next[0] = newContact;
     }
 }
-
-
-void readNamesFromFile( List_contact *listContact){
-    FILE* file = fopen("tes.txt", "r");
-    if (file == NULL) {
-        printf("Impossible d'ouvrir le fichier.\n");
-        exit(EXIT_FAILURE);
-    }
-    char name[50];
-    char chaine[50] = ""; // Chaîne vide de taille TAILLE_MAX
-    while (fgets(chaine, 50, file) != NULL) // On lit le fichier tant qu'on ne reçoit pas d'erreur (NULL)
-    {
-        printf("%s", chaine); // On affiche la chaîne qu'on vient de lire
-    }
-//        Contact* new =createContact();
-//       addNewContact(listContact,new);
-
-
-    fclose(file);
-}

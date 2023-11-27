@@ -61,10 +61,11 @@ List_contact *createListContact();
 Contact *createContact();
 
 void addNewContact(List_contact *listContact, Contact *newContact);
-
 void addNewContacttemp(List_contact *listContact, Contact *newContact);
 // Fonction pour créer un nouveau rendez-vous pour un contact (et insérer le contact si nécessaire)
 void createRendezVous(Contact *contact);
+
+void conversionminuscule(char* str);  // conversion en minuscule
 
 // Fonction pour supprimer un rendez-vous pour un contact
 void deleteAppointment(Contact *);
