@@ -69,7 +69,7 @@ int main() {
 //  displayList(&list2);
 //    TestlistAligne();
 //    t_d_list lis = createlist(10);
-//    displayList(&lis);
+//    ddisplayList(&lis);
 //    printf("clear");
 //    printf("cette valeur est dans la liste tri different :%d", rechercheint(list,20));
 //    timeSearch();
@@ -82,7 +82,7 @@ int main() {
     //displayRendezVous(contact->rendez_vous);
     //createRendezVous(contact);
     //displayContact(*contact);
-
+    readNamesFromFile( listContact);
     displayMenu(listContact);
     //timeSearch();
 

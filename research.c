@@ -63,7 +63,7 @@ void timeSearch(){
 
     char *time_lvl0;
     char *time_all_levels;
-    for( int i=7;i<20 ;i++) {
+    for( int i=7;i<30 ;i++) {
 
 
         printf("en cours %d\n",i);
@@ -73,8 +73,8 @@ void timeSearch(){
 
 
         startTimer();
-        for(int g=0;g<1000000;g++){
-            rechercheClassique(list,rand() % (1000000 - -1000000 + 1) + -1000000 );
+        for(int g=0;g<1000;g++){
+            rechercheClassique(list,rand() % (1000 - -1000 + 1) + -1000 );
         }
         stopTimer();
         displayTime();
@@ -82,8 +82,8 @@ void timeSearch(){
 
 
         startTimer();
-        for(int g=0;g<1000000;g++){
-            rechercheInt(list,rand() % (1000000 - -1000000 + 1) + -1000000);
+        for(int g=0;g<1000;g++){
+            rechercheInt(list,rand() % (1000 - -1000 + 1) + -1000);
         }
         stopTimer();
         time_all_levels = getTimeAsString();

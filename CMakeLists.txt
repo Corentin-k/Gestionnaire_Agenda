@@ -10,4 +10,5 @@ add_executable(Gestionnaire_Agenda main.c fichier.c fichier.h
         research.h
         research.c
         contact.c
-        contact.h)
+        contact.h
+tes.txt)

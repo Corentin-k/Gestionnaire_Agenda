@@ -54,6 +54,8 @@ int scanInt(int);
 Contact *contactExists(List_contact *listContact,Contact *contact);
 void displayContact(Contact contact);
 
+
+
 List_contact *createListContact();
 // Fonction pour créer un nouvel contact et l'insère dans la liste listContact
 Contact *createContact();
@@ -80,4 +82,8 @@ int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2);
 void saveInFile(List_contact listContact);
 
 void displayMenu(List_contact *listContact);
+// Fonction pour lire le fichier et stocker les prénoms dans la liste
+void readNamesFromFile( List_contact *listContact);
+
+
 #endif //GESTIONNAIRE_AGENDA_CONTACT_H
