@@ -254,8 +254,9 @@ void addNewContacttemp(List_contact *listContact, Contact *newContact)
         Contact* temp = listContact->contact[0];
         while (temp->next[0]!= NULL) { temp =  temp->next[0];}
         temp->next[0] = newContact;
-    }
+   }
 }
+
 
 void conversionminuscule(char* str)
 {
@@ -269,8 +270,8 @@ void conversionminuscule(char* str)
 
 
 
-void readNamesFromFile( List_contact listContact){
-    FILE* file = fopen("tes.txt", "r");
+void readNamesFromFile( List_contact *listContact){
+    FILE* file = fopen("noms2008nat_txt.txt", "r");
     if (file == NULL) {
         printf("Impossible d'ouvrir le fichier.\n");
         exit(EXIT_FAILURE);
@@ -282,6 +283,8 @@ void readNamesFromFile( List_contact listContact){
         printf("%s", chaine); // On affiche la chaîne qu'on vient de lire
     }
 //        Contact* new =createContact();
-//       addNewContact(listContact,new)
-//
-       }
+//       addNewContact(listContact,new);
+
+
+    fclose(file);
+}
