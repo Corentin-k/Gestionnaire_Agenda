@@ -44,14 +44,19 @@ int sizeChar(char* str){
 
 void addNewContact(List_contact* listContact,Contact * newContact){
     if(contactExists(listContact,newContact)!=NULL){
-        printf("Le contact existe deja");
+        printf("Le contact existe deja"); return;
     }
-    else{
-        listContact->contact[0] = newContact;
-        listContact->max_contact++;
-        printf("Le contact a bien ete ajoute");
+    if (listContact->contact[0] == NULL ) listContact->contact[0] == newContact;
+    int y=1; int pos_found = 0;
+    for (int x = 0; x < y ; x ++) {
+        Contact *temp = listContact->contact[0];
+        while (temp!= NULL && pos_found != 1 )
+        {
+            
+            temp = temp->next[x];
+        }
+        int compteur = 0;
     }
-
 
 }
 
@@ -60,7 +65,7 @@ Contact *contactExists(List_contact *listContact,Contact *contact){ //Faire une 
     while (temp != NULL) {
         if (temp->nom == contact->nom && temp->prenom == contact->prenom)
             return contact;
-        temp = temp;
+        temp = temp->next[0];
     }
     return NULL;
 }
@@ -76,9 +81,10 @@ Contact *createContact(){
     Contact *newContact = malloc(sizeof(Contact));
     printf("Saisir le nom du contact :\n>>>");
     newContact->nom = scanString();
+    conversionminuscule(newContact->nom);
 
     printf("Saisir le prenom du contact :\n>>>");
-    newContact->prenom = scanString();
+    newContact->prenom = scanString();conversionminuscule(newContact->prenom);
     newContact->rendez_vous = NULL;
     newContact->next = malloc(4*sizeof(*newContact));
     for (int x=0;x<4;x++) newContact->next[0]=NULL;
@@ -250,3 +256,32 @@ void addNewContacttemp(List_contact *listContact, Contact *newContact)
         temp->next[0] = newContact;
     }
 }
+
+void conversionminuscule(char* str)
+{
+    for (int i = 0; str[i]!='\0'; i++) {
+        // si les caractères sont en majuscules, convertissez-les en minuscule en ajoutant 32 à leur valeur ASCII.
+        if(str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = str[i] +32;
+        }
+    }
+}
+
+
+
+void readNamesFromFile( List_contact listContact){
+    FILE* file = fopen("tes.txt", "r");
+    if (file == NULL) {
+        printf("Impossible d'ouvrir le fichier.\n");
+        exit(EXIT_FAILURE);
+    }
+    char name[50];
+    char chaine[50] = ""; // Chaîne vide de taille TAILLE_MAX
+    while (fgets(chaine, 50, file) != NULL) // On lit le fichier tant qu'on ne reçoit pas d'erreur (NULL)
+    {
+        printf("%s", chaine); // On affiche la chaîne qu'on vient de lire
+    }
+//        Contact* new =createContact();
+//       addNewContact(listContact,new)
+//
+       }

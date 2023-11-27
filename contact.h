@@ -82,6 +82,9 @@ int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2);
 // Fonction pour sauvegarder les rendez-vous dans un fichier
 void saveInFile(List_contact listContact);
 
+// Fonction pour lire le fichier et stocker les prénoms dans la liste
+void readNamesFromFile( List_contact listContact);
+
 void displayMenu(List_contact *listContact);
 // Fonction pour lire le fichier et stocker les prénoms dans la liste
 void readNamesFromFile( List_contact *listContact);
