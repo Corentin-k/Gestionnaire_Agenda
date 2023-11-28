@@ -39,9 +39,58 @@ int sizeChar(char* str){
         }
     }return size;
 }
+void conversionminuscule(char* str)
+{
+    for (int i = 0; str[i]!='\0'; i++) {
+        // si les caractères sont en majuscules, convertissez-les en minuscule en ajoutant 32 à leur valeur ASCII.
+        if(str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = str[i] +32;
+        }
+    }
+}
+/////////////////////////////////////////RENDEZ-VOUS/////////////////////////////////////////
+void createRendezVous(Contact *contact){
+    Rendez_vous *newRV = malloc(sizeof(Rendez_vous));
+    printf("\nSaisir le jour du rendez-vous :\n>>>");
+    newRV->date.jour =scanInt(32);
+    printf("\nSaisir le mois du rendez-vous :\n>>>");
+    newRV->date.mois =scanInt(13);
+    printf("\nSaisir l'annee du rendez-vous :\n>>>");
+    newRV->date.annee = scanInt(100);
+    printf("\nSaisir l'heure du rendez-vous :\n>>>");
+    newRV->heure_rendez_vous.heure =scanInt(60);
+    printf("\nSaisir les minutes du rendez-vous :\n>>>");
+    newRV->heure_rendez_vous.minute =scanInt(60);
+    printf("\nSaisir la duree du rendez-vous (en heure) :\n>>>");
+    newRV->duree.heure =scanInt(60);
+    printf("\nSaisir la duree du rendez-vous (en minute) :\n>>>");
+    newRV->duree.minute =scanInt(60);
+    printf("\nSaisir l'objet du rendez-vous :\n>>>");
+    newRV->objet = scanString();
+    //addNewRendezVous(contact,newRV);
+    Rendez_vous * temp = contact->rendez_vous;
+    if (temp==NULL) contact->rendez_vous = newRV;
+    else {
+        while (temp->next != NULL) temp = temp->next;
+        temp->next = newRV;
+    }
 
 
 
+}
+
+
+void displayRendezVous(Rendez_vous*  rdv)
+{
+    printf("------ Objet: %s ------",rdv->objet);
+    printf("\n| Date : %d/%d/%d",rdv->date.jour,rdv->date.mois,rdv->date.annee);
+    printf("\n| Heure: %d:%d",rdv->heure_rendez_vous.minute,rdv->heure_rendez_vous.heure);
+    printf("\n| Duree: %d:%d",rdv->duree.heure,rdv->duree.minute);
+    printf("\n--------------------------\n");
+}
+
+
+/////////////////////////////////////////CONTACT/////////////////////////////////////////
 void addNewContact(List_contact* listContact,Contact * newContact){
     if(contactExists(listContact,newContact)!=NULL){
         printf("Le contact existe deja"); return;
@@ -141,110 +190,10 @@ void    displayContact(Contact contact){
 
 }
 
-void createRendezVous(Contact *contact){
-    Rendez_vous *newRV = malloc(sizeof(Rendez_vous));
-    printf("\nSaisir le jour du rendez-vous :\n>>>");
-    newRV->date.jour =scanInt(32);
-    printf("\nSaisir le mois du rendez-vous :\n>>>");
-    newRV->date.mois =scanInt(13);
-    printf("\nSaisir l'annee du rendez-vous :\n>>>");
-    newRV->date.annee = scanInt(100);
-    printf("\nSaisir l'heure du rendez-vous :\n>>>");
-    newRV->heure_rendez_vous.heure =scanInt(60);
-    printf("\nSaisir les minutes du rendez-vous :\n>>>");
-    newRV->heure_rendez_vous.minute =scanInt(60);
-    printf("\nSaisir la duree du rendez-vous (en heure) :\n>>>");
-    newRV->duree.heure =scanInt(60);
-    printf("\nSaisir la duree du rendez-vous (en minute) :\n>>>");
-    newRV->duree.minute =scanInt(60);
-    printf("\nSaisir l'objet du rendez-vous :\n>>>");
-    newRV->objet = scanString();
-    //addNewRendezVous(contact,newRV);
-    Rendez_vous * temp = contact->rendez_vous;
-    if (temp==NULL) contact->rendez_vous = newRV;
-    else {
-        while (temp->next != NULL) temp = temp->next;
-        temp->next = newRV;
-    }
 
 
 
-}
 
-
-void displayMenu(List_contact *listContact) {
-    int choice;
-
-    do {
-        printf("-----------------------------------------------------------------\n");
-        printf("|                       Menu:                                   |\n");
-        printf("|             1. Creer un nouveau contact                       |\n");
-        printf("|             2. Ajouter un rendez-vous                         |\n");
-        printf("|             3. Supprimer un rendez-vous                       |\n");
-        printf("|             4. Rechercher un contact                          |\n");
-        printf("|             5. Afficher les rendez-vous d'un contact          |\n");
-        printf("|             6. display tout les contacts listes 0 for now     |\n"); //Sauvegarder dans un fichier
-        printf("|             0. Quitter                                        |\n");
-        printf("-----------------------------------------------------------------\n");
-
-
-        do {
-            printf("Entrez votre choix (0 - 6)\n>>>");
-            if (scanf("%d", &choice) != 1) {
-                while (getchar() != '\n');                      // Si l'entrée n'est pas un entier, on vide le tampon d'entrée
-            } else if (choice < 0 || choice > 6) {
-                printf("Veuillez entrer un nombre valide entre 0 et 6 :\n");// Si l'entier n'est pas dans la plage souhaitée
-            }
-        } while (choice < 0 || choice > 6);
-        printf("\n");
-        Contact* new;
-        switch (choice) {
-            case 1:
-                new =createContact();
-                addNewContacttemp(listContact,new);
-                break;
-            case 2:
-                createRendezVous(listContact);
-                break;
-            case 3:
-//                deleteAppointment(listContact);
-                break;
-            case 4:
-//                searchContact(listContact);
-                break;
-            case 5:
-
-//                //displayRendezVous(*contactExists(listContact,contact));
-                break;
-            case 6:
-                new = listContact->contact[0];
-                if (new!= NULL) {
-                    do {
-                        displayContact(*new);
-                        new = new->next[0];
-                    }
-                    while (new!=NULL);
-                }
-
-                break;
-            case 0:
-                printf("Au revoir !\n");
-                break;
-            default:
-                printf("Choix non valide. Veuillez réessayer.\n");
-        }
-
-    } while (choice != 0);
-}
-
-void displayRendezVous(Rendez_vous*  rdv)
-{
-    printf("------ Objet: %s ------",rdv->objet);
-    printf("\n| Date : %d/%d/%d",rdv->date.jour,rdv->date.mois,rdv->date.annee);
-    printf("\n| Heure: %d:%d",rdv->heure_rendez_vous.minute,rdv->heure_rendez_vous.heure);
-    printf("\n| Duree: %d:%d",rdv->duree.heure,rdv->duree.minute);
-
-}
 
 void addNewContacttemp(List_contact *listContact, Contact *newContact)
 {
@@ -258,16 +207,8 @@ void addNewContacttemp(List_contact *listContact, Contact *newContact)
 }
 
 
-void conversionminuscule(char* str)
-{
-    for (int i = 0; str[i]!='\0'; i++) {
-        // si les caractères sont en majuscules, convertissez-les en minuscule en ajoutant 32 à leur valeur ASCII.
-        if(str[i] >= 'A' && str[i] <= 'Z') {
-            str[i] = str[i] +32;
-        }
-    }
-}
 
+/////////////////////////////////////////FICHIER_SAUVEGARDE/////////////////////////////////////////
 
 
 void readNamesFromFile( List_contact *listContact){
@@ -288,3 +229,5 @@ void readNamesFromFile( List_contact *listContact){
 
     fclose(file);
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////

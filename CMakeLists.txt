@@ -11,5 +11,7 @@ add_executable(Gestionnaire_Agenda main.c fichier.c fichier.h
         research.c
         contact.c
         contact.h
-        )
+        menu.c
+        menu.h
+)
 configure_file(./noms2008nat_txt.txt noms2008nat_txt.txt COPYONLY)

@@ -47,37 +47,42 @@ typedef struct  list_contact{
     int max_contact;
 }List_contact;
 
+
+
 char *scanString();
 int sizeChar(char* str);
 int scanInt(int);
-//fonction qui regarde si le contact existe
-Contact *contactExists(List_contact *listContact,Contact *contact);
-void displayContact(Contact contact);
-
-
-
-List_contact *createListContact();
-// Fonction pour créer un nouvel contact et l'insère dans la liste listContact
-Contact *createContact();
-
-void addNewContact(List_contact *listContact, Contact *newContact);
-void addNewContacttemp(List_contact *listContact, Contact *newContact);
-// Fonction pour créer un nouveau rendez-vous pour un contact (et insérer le contact si nécessaire)
-void createRendezVous(Contact *contact);
-
 void conversionminuscule(char* str);  // conversion en minuscule
 
-// Fonction pour supprimer un rendez-vous pour un contact
-void deleteAppointment(Contact *);
+List_contact *createListContact();
 
+/////////////////////////CONTACT/////////////////////////////
+//fonction qui regarde si le contact existe
+Contact *contactExists(List_contact *listContact,Contact *contact);
+// Fonction pour créer un nouvel contact et l'insère dans la liste listContact
+Contact *createContact();
+void addNewContact(List_contact *listContact, Contact *newContact);
+void addNewContacttemp(List_contact *listContact, Contact *newContact);
+void displayContact(Contact contact);
 // Fonction pour rechercher un contact avec complétion automatique
 void searchContact(const List_contact *listContact);
 
+/////////////////////////RENDEZ-VOUS/////////////////////////////
+
+// Fonction pour créer un nouveau rendez-vous pour un contact (et insérer le contact si nécessaire)
+void createRendezVous(Contact *contact);
 // Fonction pour afficher les rendez-vous d'un contact
 void displayRendezVous(Rendez_vous*  rdv);
 
+// Fonction pour supprimer un rendez-vous pour un contact
+void deleteRendezVous(Contact *);
+
 // Fonction pour comparer 2 rendez-vous pour savoir qui est le plus tôt
 int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2);
+
+
+
+/////////////////////////FICHIER_SAUVEGARDE/////////////////////////////
 
 // Fonction pour sauvegarder les rendez-vous dans un fichier
 void saveInFile(List_contact listContact);
@@ -85,9 +90,7 @@ void saveInFile(List_contact listContact);
 // Fonction pour lire le fichier et stocker les prénoms dans la liste
 void readNamesFromFile( List_contact* listContact);
 
-void displayMenu(List_contact *listContact);
-
-
+/////////////////////////////////////////////////////////////////////
 
 
 
