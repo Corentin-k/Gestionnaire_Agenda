@@ -59,6 +59,8 @@ List_contact *createListContact();
 /////////////////////////CONTACT/////////////////////////////
 //fonction qui regarde si le contact existe
 Contact *contactExists(List_contact *listContact,Contact *contact);
+// Fonction pour créer un contact vide
+Contact *createEmptyContact();
 // Fonction pour créer un nouvel contact et l'insère dans la liste listContact
 Contact *createContact();
 void addNewContact(List_contact *listContact, Contact *newContact);

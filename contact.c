@@ -95,7 +95,10 @@ void addNewContact(List_contact* listContact,Contact * newContact){
     if(contactExists(listContact,newContact)!=NULL){
         printf("Le contact existe deja"); return;
     }
-    if (listContact->contact[0] == NULL ) listContact->contact[0] == newContact;
+    if (listContact->contact[0] == NULL ){
+        listContact->contact[0] == newContact;
+        return;
+    }
     int y=1; int pos_found = 0;
     for (int x = 0; x < y ; x ++) {
         Contact *temp = listContact->contact[0];
@@ -140,7 +143,19 @@ Contact *createContact(){
     return newContact;
 
 }
+Contact *createEmptyContact(){
+    Contact *newContact = malloc(sizeof(Contact));
 
+    newContact->nom = NULL;
+    conversionminuscule(newContact->nom);
+    newContact->prenom = NULL;
+    conversionminuscule(newContact->prenom);
+    newContact->rendez_vous = NULL;
+    newContact->next = malloc(4*sizeof(*newContact));
+    for (int x=0;x<4;x++) newContact->next[0]=NULL;
+    return newContact;
+
+}
 //void displayList(List_contact list) {
 //
 //    Contact * temp, *prev;
@@ -222,11 +237,27 @@ void readNamesFromFile( List_contact *listContact){
     while (fgets(chaine, 50, file) != NULL) // On lit le fichier tant qu'on ne reçoit pas d'erreur (NULL)
     {
         printf("%s", chaine); // On affiche la chaîne qu'on vient de lire
+        Contact* new =createEmptyContact();
+        new->nom = chaine;
+       addNewContact(listContact,new);
+       printf("%s", new->nom);
     }
-//        Contact* new =createContact();
-//       addNewContact(listContact,new);
 
 
+
+    fclose(file);
+}
+void saveInFile(List_contact listContact){
+    FILE* file = fopen("noms.txt", "w");
+    if (file == NULL) {
+        printf("Impossible d'ouvrir le fichier.\n");
+        exit(EXIT_FAILURE);
+    }
+    Contact *temp = listContact.contact[0];
+    while (temp != NULL) {
+        fprintf(file, "%s\n", temp->nom);
+        temp = temp->next[0];
+    }
     fclose(file);
 }
 

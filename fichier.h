@@ -23,31 +23,37 @@ typedef struct s_d_list
 } t_d_list;
 
 
-//Créer une cellule : on donne sa valeur et le nombre de niveaux que possède cette cellule, pour obtenir un pointeur vers cette cellule
-t_d_cell *createEmptyCell(int value, int num_levels);
 
+////////////////LISTE/////////////////////
 //Créer une liste : on donne le nombre de niveaux que possède cette liste, pour obtenir un pointeur vers cette liste
 t_d_list *createEmptyList(int max_levels);
 
 //Créer une liste : de 2^n cellules
 t_d_list createList(int n);
 
-
-//Affiche une cellule
-void displayCell(t_d_cell *cell);
-
 //Affiche une liste
 void displayList(t_d_list *list);
-
-//Ajoute une cellule dans une liste en la triant par ordre croissant a partir du niveau head[0]
-void addCellInList(t_d_list *list, t_d_cell *cell);
-
-
 
 //Ajoute une cellule dans une liste en la triant par ordre croissant
 t_d_list* createListTrie(int n);
 
 //Ajoute une cellule dans une liste en la triant par ordre croissant
 void ajoutreCursifList(t_d_list* list, int val, int niv,int puiss);
+
+////////////////CELLULE/////////////////////
+
+//Créer une cellule : on donne sa valeur et le nombre de niveaux que possède cette cellule, pour obtenir un pointeur vers cette cellule
+t_d_cell *createEmptyCell(int value, int num_levels);
+
+//Affiche une cellule
+void displayCell(t_d_cell *cell);
+
+
+//Ajoute une cellule dans une liste en la triant par ordre croissant a partir du niveau head[0]
+void addCellInList(t_d_list *list, t_d_cell *cell);
+
+
+
+
 
 #endif //GESTIONNAIRE_AGENDA_FICHIER_H
