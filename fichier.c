@@ -15,7 +15,7 @@
 ///<param name="value">Valeur de la cellule</param>
 ///<param name="nb_levels">Nombre de niveaux de la cellule</param>
 ///<returns>Pointeur vers la cellule</returns>
-t_d_cell *createEmptyCell(int value, int nb_levels) {
+t_d_cell *createCell(int value, int nb_levels) {
 
 
     t_d_cell *cell = malloc(sizeof(t_d_cell));
@@ -161,7 +161,7 @@ t_d_list*  createListTrie(int n){
 void ajoutreCursifList(t_d_list* list, int val, int niv,int puiss)
 {// le principe est d'ajouter du niveau le plus profond et de remonter comme un arbre avec ses voisins
     if (niv==0) return; // condition d'arrêt
-    addCellInList(list,createEmptyCell(val,niv));
+    addCellInList(list,createCell(val,niv));
 
     ajoutreCursifList(list,val+ pow(2,puiss-1),niv-1,puiss-1);
     ajoutreCursifList(list,val- pow(2,puiss-1),niv-1,puiss-1);
@@ -189,7 +189,7 @@ t_d_list createList(int n) {
             }
         }
 
-        newcell = createEmptyCell((i + 1), niveau);
+        newcell = createCell((i + 1), niveau);
         addCellInList(listniv, newcell);
     }
     return *listniv;
