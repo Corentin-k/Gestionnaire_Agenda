@@ -94,14 +94,14 @@ int main() {
 void testlistAligne(){
     t_d_list *list = createEmptyList(5);
 
-    t_d_cell *cell1 = createEmptyCell(10, 3);
+    t_d_cell *cell1 = createCell(10, 3);
     addCellInList(list, cell1);
-    t_d_cell *cell2 = createEmptyCell(200, 2);
-    t_d_cell *cell3 = createEmptyCell(150, 4);
-    t_d_cell *cell4 = createEmptyCell(300, 4);
-    t_d_cell *cell5 = createEmptyCell(1, 5);
-    t_d_cell *cell6 = createEmptyCell(-1101, 5);
-    t_d_cell *cell7 = createEmptyCell(101, 5);
+    t_d_cell *cell2 = createCell(200, 2);
+    t_d_cell *cell3 = createCell(150, 4);
+    t_d_cell *cell4 = createCell(300, 4);
+    t_d_cell *cell5 = createCell(1, 5);
+    t_d_cell *cell6 = createCell(-1101, 5);
+    t_d_cell *cell7 = createCell(101, 5);
     addCellInList(list, cell7);
     addCellInList(list, cell2);
     addCellInList(list, cell3);
@@ -114,18 +114,18 @@ void testlistAligne(){
 void testTrie(){
     t_d_list *list = createEmptyList(5);
 
-    t_d_cell *cell1 = createEmptyCell(rand() % (100 - -100 + 1) + -100
+    t_d_cell *cell1 = createCell(rand() % (100 - -100 + 1) + -100
             , 3);
     addCellInList(list, cell1);
-    t_d_cell *cell2 = createEmptyCell(rand() % (100 - -100 + 1) + -100
+    t_d_cell *cell2 = createCell(rand() % (100 - -100 + 1) + -100
             , 2);
-    t_d_cell *cell3 = createEmptyCell(rand() % (100 - -100 + 1) + -100
+    t_d_cell *cell3 = createCell(rand() % (100 - -100 + 1) + -100
             , 4);
-    t_d_cell *cell4 = createEmptyCell(rand() % (100 - -100 + 1) + -100000
+    t_d_cell *cell4 = createCell(rand() % (100 - -100 + 1) + -100000
             , 4);
-    t_d_cell *cell5 = createEmptyCell(rand() % (100 - -100 + 1) + -100, 5);
-    t_d_cell *cell6 = createEmptyCell(rand() % (100 - -100 + 1) + -100, 5);
-    t_d_cell *cell7 = createEmptyCell(rand() % (100 - -100 + 1) + -100, 5);
+    t_d_cell *cell5 = createCell(rand() % (100 - -100 + 1) + -100, 5);
+    t_d_cell *cell6 = createCell(rand() % (100 - -100 + 1) + -100, 5);
+    t_d_cell *cell7 = createCell(rand() % (100 - -100 + 1) + -100, 5);
     addCellInList(list, cell7);
     printf("Ajout de la valeur %d\n", cell1->value);
     displayList(list);

@@ -5,7 +5,6 @@
 #ifndef GESTIONNAIRE_AGENDA_FICHIER_H
 #define GESTIONNAIRE_AGENDA_FICHIER_H
 
-
 //Structure cellule stocke une valeur de type en entier et deux pointeurs vers deux autres cellules
 typedef struct s_d_cell
 {
@@ -43,7 +42,7 @@ void ajoutreCursifList(t_d_list* list, int val, int niv,int puiss);
 ////////////////CELLULE/////////////////////
 
 //Créer une cellule : on donne sa valeur et le nombre de niveaux que possède cette cellule, pour obtenir un pointeur vers cette cellule
-t_d_cell *createEmptyCell(int value, int num_levels);
+t_d_cell *createCell(int value, int num_levels);
 
 //Affiche une cellule
 void displayCell(t_d_cell *cell);
