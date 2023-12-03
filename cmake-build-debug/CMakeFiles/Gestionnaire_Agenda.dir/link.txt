@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\Gestionnaire_Agenda.dir/objects.a
+C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\ar.exe qc CMakeFiles\Gestionnaire_Agenda.dir/objects.a @CMakeFiles\Gestionnaire_Agenda.dir\objects1.rsp
+C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\Gestionnaire_Agenda.dir/objects.a -Wl,--no-whole-archive -o Gestionnaire_Agenda.exe -Wl,--out-implib,libGestionnaire_Agenda.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Gestionnaire_Agenda.dir\linkLibs.rsp
