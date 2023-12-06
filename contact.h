@@ -72,7 +72,9 @@ void searchContact(const List_contact *listContact);
 /////////////////////////RENDEZ-VOUS/////////////////////////////
 
 // Fonction pour créer un nouveau rendez-vous pour un contact (et insérer le contact si nécessaire)
-void createRendezVous(Contact *contact);
+Rendez_vous *createRendezVous();
+
+void addNewRendezVous(Contact *personne);
 // Fonction pour afficher les rendez-vous d'un contact
 void displayRendezVous(Rendez_vous*  rdv);
 
@@ -82,6 +84,8 @@ void deleteRendezVous(Contact *);
 // Fonction pour comparer 2 rendez-vous pour savoir qui est le plus tôt
 int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2);
 
+// Fonction pour avoir l'index de la place du rdv dans la liste
+int getindex(Rendez_vous*  rdv_head, Rendez_vous rdv_a_placer);
 
 
 /////////////////////////FICHIER_SAUVEGARDE/////////////////////////////

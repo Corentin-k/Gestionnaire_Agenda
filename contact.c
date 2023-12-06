@@ -39,6 +39,7 @@ int sizeChar(char* str){
         }
     }return size;
 }
+
 void conversionminuscule(char* str)
 {
     for (int i = 0; str[i]!='\0'; i++) {
@@ -49,35 +50,36 @@ void conversionminuscule(char* str)
     }
 }
 /////////////////////////////////////////RENDEZ-VOUS/////////////////////////////////////////
-void createRendezVous(Contact *contact){
+
+Rendez_vous *createRendezVous() {
     Rendez_vous *newRV = malloc(sizeof(Rendez_vous));
     printf("\nSaisir le jour du rendez-vous :\n>>>");
-    newRV->date.jour =scanInt(32);
+    newRV->date.jour = scanInt(32);
     printf("\nSaisir le mois du rendez-vous :\n>>>");
-    newRV->date.mois =scanInt(13);
+    newRV->date.mois = scanInt(13);
     printf("\nSaisir l'annee du rendez-vous :\n>>>");
     newRV->date.annee = scanInt(100);
     printf("\nSaisir l'heure du rendez-vous :\n>>>");
-    newRV->heure_rendez_vous.heure =scanInt(60);
+    newRV->heure_rendez_vous.heure = scanInt(60);
     printf("\nSaisir les minutes du rendez-vous :\n>>>");
-    newRV->heure_rendez_vous.minute =scanInt(60);
+    newRV->heure_rendez_vous.minute = scanInt(60);
     printf("\nSaisir la duree du rendez-vous (en heure) :\n>>>");
-    newRV->duree.heure =scanInt(60);
+    newRV->duree.heure = scanInt(60);
     printf("\nSaisir la duree du rendez-vous (en minute) :\n>>>");
-    newRV->duree.minute =scanInt(60);
+    newRV->duree.minute = scanInt(60);
     printf("\nSaisir l'objet du rendez-vous :\n>>>");
     newRV->objet = scanString();
-    //addNewRendezVous(contact,newRV);
-    Rendez_vous * temp = contact->rendez_vous;
-    if (temp==NULL) contact->rendez_vous = newRV;
-    else {
-        while (temp->next != NULL) temp = temp->next;
-        temp->next = newRV;
-    }
+    return newRV;
+}
 
-
+void addNewRendezVous(Contact *personne){
+    Rendez_vous *newRV = createRendezVous();
 
 }
+
+
+
+
 
 
 void displayRendezVous(Rendez_vous*  rdv)
