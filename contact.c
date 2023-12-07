@@ -51,8 +51,8 @@ void conversionminuscule(char* str)
 }
 /////////////////////////////////////////RENDEZ-VOUS/////////////////////////////////////////
 
-Rendez_vous *createRendezVous() {
-    Rendez_vous *newRV = malloc(sizeof(Rendez_vous));
+Rendez_vous createRendezVous() {
+    Rendez_vous newRV = malloc(sizeof(Rendez_vous));
     printf("\nSaisir le jour du rendez-vous :\n>>>");
     newRV->date.jour = scanInt(32);
     printf("\nSaisir le mois du rendez-vous :\n>>>");
@@ -69,26 +69,99 @@ Rendez_vous *createRendezVous() {
     newRV->duree.minute = scanInt(60);
     printf("\nSaisir l'objet du rendez-vous :\n>>>");
     newRV->objet = scanString();
+    newRV->next = NULL;
     return newRV;
 }
 
 void addNewRendezVous(Contact *personne){
-    Rendez_vous *newRV = createRendezVous();
+    Rendez_vous newRV = createRendezVous();
+    Rendez_vous temp = personne->rendez_vous;
+    // S'il n'y a pas déjà de rdv, celui créer sera direct en tête
+    if (temp == NULL){
+        personne->rendez_vous = newRV;
+        return;}
+    // Si le premier rdv est plus grand alors il prend la première place
+    if(compareRendezVous(personne->rendez_vous, newRV) == 0){
+        newRV->next = personne->rendez_vous->next;
+        personne->rendez_vous = newRV;
+        return;
+    }
 
+    // on parcourt la liste pour savoir où placer le rdv
+    while (temp != NULL && compareRendezVous(temp->next,newRV) != 0)
+        temp = temp->next;
+    newRV->next = temp->next;
+    temp->next = newRV;
+    return;
+
+
+}
+
+int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2) {
+    // Comparaison des années
+    if (rdv1 == NULL)
+        return 0;
+    if (rdv1->date.annee < rdv2->date.annee) {
+        return 1;
+    } else if (rdv1->date.annee > rdv2->date.annee) {
+        return 0;
+    }
+
+    // Si les années sont les mêmes, comparer les mois
+    if (rdv1->date.mois < rdv2->date.mois) {
+        return 1;
+    } else if (rdv1->date.mois > rdv2->date.mois) {
+        return 0;
+    }
+
+    // Si les mois sont les mêmes, comparer les jours
+    if (rdv1->date.jour < rdv2->date.jour) {
+        return 1;
+    } else if (rdv1->date.jour > rdv2->date.jour) {
+        return 0;
+    }
+
+    // Si les dates sont les mêmes, comparer les heures
+    if (rdv1->heure_rendez_vous.heure < rdv2->heure_rendez_vous.heure) {
+        return 1;
+    } else if (rdv1->heure_rendez_vous.heure > rdv2->heure_rendez_vous.heure) {
+        return 0;
+    }
+
+    // Si les heures sont les mêmes, comparer les minutes
+    if (rdv1->heure_rendez_vous.minute < rdv2->heure_rendez_vous.minute) {
+        return 1;
+    } else if (rdv1->heure_rendez_vous.minute > rdv2->heure_rendez_vous.minute) {
+        return 0;
+    }
+
+    // Les rendez-vous sont identiques.
+    return 2;
 }
 
 
 
 
 
-
-void displayRendezVous(Rendez_vous*  rdv)
+void displayRendezVous(Contact *personne)
 {
-    printf("------ Objet: %s ------",rdv->objet);
-    printf("\n| Date : %d/%d/%d",rdv->date.jour,rdv->date.mois,rdv->date.annee);
-    printf("\n| Heure: %d:%d",rdv->heure_rendez_vous.minute,rdv->heure_rendez_vous.heure);
-    printf("\n| Duree: %d:%d",rdv->duree.heure,rdv->duree.minute);
-    printf("\n--------------------------\n");
+    Rendez_vous temp = personne->rendez_vous;
+    int conteur = 0;
+    if(temp == NULL){
+        printf("Ce contact ne possède pas encore de rendez-vous ! \n");
+        return;
+    }
+    while(temp != NULL){
+        conteur ++;
+        printf("Rendez-vous n°%d\n",conteur);
+        printf("------ Objet: %s ------",temp->objet);
+        printf("\n| Date : %d/%d/%d",temp->date.jour,temp->date.mois,temp->date.annee);
+        printf("\n| Heure: %d:%d",temp->heure_rendez_vous.minute,temp->heure_rendez_vous.heure);
+        printf("\n| Duree: %d:%d",temp->duree.heure,temp->duree.minute);
+        printf("\n--------------------------\n");
+        temp= temp->next;
+    }
+    return;
 }
 
 
@@ -197,7 +270,7 @@ void    displayContact(Contact contact){
     printf("|   Nom : %s\n",contact.nom);
     printf("|   Prenom : %s\n",contact.prenom);
     printf("|   Rendez-vous :\n");
-    Rendez_vous* temp = contact.rendez_vous;
+    Rendez_vous temp = contact.rendez_vous;
     while (temp!=NULL)
     {
         displayRendezVous(temp);
