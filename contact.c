@@ -52,7 +52,7 @@ void conversionminuscule(char* str)
 /////////////////////////////////////////RENDEZ-VOUS/////////////////////////////////////////
 
 Rendez_vous createRendezVous() {
-    Rendez_vous newRV = malloc(sizeof(Rendez_vous));
+    Rendez_vous newRV = malloc(sizeof(struct rendez_vous));
     printf("\nSaisir le jour du rendez-vous :\n>>>");
     newRV->date.jour = scanInt(32);
     printf("\nSaisir le mois du rendez-vous :\n>>>");
@@ -69,17 +69,22 @@ Rendez_vous createRendezVous() {
     newRV->duree.minute = scanInt(60);
     printf("\nSaisir l'objet du rendez-vous :\n>>>");
     newRV->objet = scanString();
+    printf("\nRendez-vous créé !\n");
     newRV->next = NULL;
     return newRV;
 }
 
 void addNewRendezVous(Contact *personne){
     Rendez_vous newRV = createRendezVous();
+
     Rendez_vous temp = personne->rendez_vous;
+
     // S'il n'y a pas déjà de rdv, celui créer sera direct en tête
     if (temp == NULL){
-        personne->rendez_vous = newRV;
+        printf("test2");
+        personne->rendez_vous= newRV;
         return;}
+
     // Si le premier rdv est plus grand alors il prend la première place
     if(compareRendezVous(personne->rendez_vous, newRV) == 0){
         newRV->next = personne->rendez_vous->next;
@@ -90,8 +95,10 @@ void addNewRendezVous(Contact *personne){
     // on parcourt la liste pour savoir où placer le rdv
     while (temp != NULL && compareRendezVous(temp->next,newRV) != 0)
         temp = temp->next;
+
     newRV->next = temp->next;
     temp->next = newRV;
+
     return;
 
 
@@ -186,6 +193,7 @@ void deleteRendezVous(Contact *personne,int indexe){
 
 /////////////////////////////////////////CONTACT/////////////////////////////////////////
 void addNewContact(List_contact* listContact,Contact * newContact){
+    printf("Ajout du contact : %s %s\n",newContact->nom,newContact->prenom);
     if(contactExists(listContact,newContact)!=NULL){
         printf("Le contact existe deja"); return;
     }
@@ -241,9 +249,7 @@ Contact *createEmptyContact(){
     Contact *newContact = malloc(sizeof(Contact));
 
     newContact->nom = NULL;
-    conversionminuscule(newContact->nom);
     newContact->prenom = NULL;
-    conversionminuscule(newContact->prenom);
     newContact->rendez_vous = NULL;
     newContact->next = malloc(4*sizeof(*newContact));
     for (int x=0;x<4;x++) newContact->next[0]=NULL;
@@ -321,38 +327,47 @@ void addNewContacttemp(List_contact *listContact, Contact *newContact)
 
 
 void readNamesFromFile( List_contact *listContact){
+    printf("Ouverture des contact ...\n");
     FILE* file = fopen("noms2008nat_txt.txt", "r");
     if (file == NULL) {
         printf("Impossible d'ouvrir le fichier.\n");
         exit(EXIT_FAILURE);
     }
+    printf("Recuperation des contact ...\n");
     char name[50];
     char chaine[50] = ""; // Chaîne vide de taille TAILLE_MAX
     while (fgets(chaine, 50, file) != NULL) // On lit le fichier tant qu'on ne reçoit pas d'erreur (NULL)
     {
-        printf("%s", chaine); // On affiche la chaîne qu'on vient de lire
+        //printf("%s", chaine); // On affiche la chaîne qu'on vient de lire
         Contact* new =createEmptyContact();
+
         new->nom = chaine;
-       addNewContact(listContact,new);
-       printf("%s", new->nom);
-    }
+
+        addNewContact(listContact,new);
+
+        free(new);
+
+    }printf("Recuperation terminée !\n");
 
 
 
     fclose(file);
 }
 void saveInFile(List_contact listContact){
+    printf("Ouverture du fichier Contact ou Recuperation du fichier Contact ...");
     FILE* file = fopen("noms.txt", "w");
     if (file == NULL) {
         printf("Impossible d'ouvrir le fichier.\n");
         exit(EXIT_FAILURE);
     }
     Contact *temp = listContact.contact[0];
+    printf("Sauvegarde des contact ...");
     while (temp != NULL) {
         fprintf(file, "%s\n", temp->nom);
         temp = temp->next[0];
     }
     fclose(file);
+    printf("Sauvegarde terminée !\n");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

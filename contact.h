@@ -37,7 +37,7 @@ typedef struct  s_contact{
     char * nom;
     char * prenom;
     Rendez_vous rendez_vous;
-    struct Contact **next;
+    struct s_contact **next;
 }Contact;
 
 

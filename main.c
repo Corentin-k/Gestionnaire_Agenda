@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "fichier.h"
-
+#include "research.h"
 #include "contact.h"
 
 
@@ -76,16 +76,48 @@ int main() {
 //    timeSearch();
 //   timeSearch();
 ////    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
-   List_contact *listContact =createListContact();
+//   List_contact *listContact =createListContact();
 ////    //ouvrir le fichier sauvegarder si il existe etcréer la liste des contacts
 //    Contact *contact=createContact();
 //    createRendezVous(contact);
 //    displayRendezVous(contact->rendez_vous);
 //    createRendezVous(contact);
 //    displayContact(*contact);
-    readNamesFromFile( listContact);
-    displayMenu(listContact);
+//    readNamesFromFile( listContact);
+//    displayMenu(listContact);
     //timeSearch();
+
+
+    List_contact *listContact = createListContact();
+//    readNamesFromFile( listContact);
+//    displayContact(*listContact->contact[0]);
+
+    Contact *newContact = createContact();
+    displayContact(*newContact);
+
+    // Ajouter le nouveau contact à la liste
+
+    addNewContact(listContact, newContact);
+//    Contact *newContact2 = createContact();
+//    displayContact(*newContact2);
+//
+//    // Ajouter le nouveau contact à la liste
+//
+//    addNewContact(listContact, newContact2);
+
+    displayRendezVous(newContact);
+
+    addNewRendezVous(newContact);
+
+    displayRendezVous(newContact);
+    addNewRendezVous(newContact);
+
+    displayRendezVous(newContact);
+//    // Sauvegarder dans un fichier
+//    saveInFile(*listContact);
+//
+//    // Lecture à partir du fichier
+//    readNamesFromFile(listContact);
 
     return 0;
 }
