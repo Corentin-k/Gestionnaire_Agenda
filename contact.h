@@ -82,7 +82,7 @@ void displayRendezVous(Contact *personne);
 
 
 // Fonction pour supprimer un rendez-vous pour un contact
-void deleteRendezVous(Contact );
+void deleteRendezVous(Contact *personne, int indexe);
 
 // Fonction pour comparer 2 rendez-vous pour savoir qui est le plus tôt
 int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2);

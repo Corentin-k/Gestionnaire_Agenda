@@ -164,6 +164,25 @@ void displayRendezVous(Contact *personne)
     return;
 }
 
+void deleteRendezVous(Contact *personne,int indexe){
+    Rendez_vous temp = personne->rendez_vous;
+    Rendez_vous prevtemp = personne->rendez_vous;
+    for(int i = 0; i++; i < indexe){
+        if(temp->next == NULL && i < indexe){
+            printf("Vous avez saisie un Rendez-vous qui n'existe pas ");
+            return;
+        }
+        temp = temp->next;
+        if(i == indexe){
+            prevtemp->next = temp->next;
+            free(temp->objet);
+            free(temp);
+        }
+        prevtemp = prevtemp->next;
+    }
+    return;
+}
+
 
 /////////////////////////////////////////CONTACT/////////////////////////////////////////
 void addNewContact(List_contact* listContact,Contact * newContact){
