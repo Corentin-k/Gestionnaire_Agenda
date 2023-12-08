@@ -111,8 +111,9 @@ int main() {
 
     displayRendezVous(newContact);
     addNewRendezVous(newContact);
-
     displayRendezVous(newContact);
+
+  //  displayRendezVous(newContact);
 //    // Sauvegarder dans un fichier
 //    saveInFile(*listContact);
 //

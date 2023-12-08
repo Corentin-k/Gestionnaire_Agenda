@@ -69,7 +69,7 @@ Rendez_vous createRendezVous() {
     newRV->duree.minute = scanInt(60);
     printf("\nSaisir l'objet du rendez-vous :\n>>>");
     newRV->objet = scanString();
-    printf("\nRendez-vous créé !\n");
+    printf("\nRendez-vous cree !\n");
     newRV->next = NULL;
     return newRV;
 }
@@ -87,7 +87,7 @@ void addNewRendezVous(Contact *personne){
 
     // Si le premier rdv est plus grand alors il prend la première place
     if(compareRendezVous(personne->rendez_vous, newRV) == 0){
-        newRV->next = personne->rendez_vous->next;
+        newRV->next = personne->rendez_vous;
         personne->rendez_vous = newRV;
         return;
     }
@@ -155,12 +155,12 @@ void displayRendezVous(Contact *personne)
     Rendez_vous temp = personne->rendez_vous;
     int conteur = 0;
     if(temp == NULL){
-        printf("Ce contact ne possède pas encore de rendez-vous ! \n");
+        printf("Ce contact ne possede pas encore de rendez-vous ! \n");
         return;
     }
     while(temp != NULL){
         conteur ++;
-        printf("Rendez-vous n°%d\n",conteur);
+        printf("Rendez-vous n%d\n",conteur);
         printf("------ Objet: %s ------",temp->objet);
         printf("\n| Date : %d/%d/%d",temp->date.jour,temp->date.mois,temp->date.annee);
         printf("\n| Heure: %d:%d",temp->heure_rendez_vous.minute,temp->heure_rendez_vous.heure);
@@ -174,13 +174,21 @@ void displayRendezVous(Contact *personne)
 void deleteRendezVous(Contact *personne,int indexe){
     Rendez_vous temp = personne->rendez_vous;
     Rendez_vous prevtemp = personne->rendez_vous;
-    for(int i = 0; i++; i < indexe){
+    if (indexe==0){
+        personne->rendez_vous = temp->next;
+        free(temp->objet);
+        free(temp);
+    }
+    for(int i = 0; i < indexe ; i++){
         if(temp->next == NULL && i < indexe){
-            printf("Vous avez saisie un Rendez-vous qui n'existe pas ");
+            printf("\n--------------------------\n");
+            printf("Vous avez saisie un Rendez-vous qui n'existe pas \n");
+            printf("--------------------------\n\n");
+
             return;
         }
         temp = temp->next;
-        if(i == indexe){
+        if(i+1 == indexe){
             prevtemp->next = temp->next;
             free(temp->objet);
             free(temp);
@@ -295,12 +303,6 @@ void    displayContact(Contact contact){
     printf("|   Nom : %s\n",contact.nom);
     printf("|   Prenom : %s\n",contact.prenom);
     printf("|   Rendez-vous :\n");
-    Rendez_vous temp = contact.rendez_vous;
-    while (temp!=NULL)
-    {
-        displayRendezVous(temp);
-        temp = temp->next;
-    }
     printf("--------------\n");
 
 }
