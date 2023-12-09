@@ -17,7 +17,8 @@ void displayMenu(List_contact *listContact){
         printf("|             3. Supprimer un rendez-vous                       |\n");
         printf("|             4. Rechercher un contact                          |\n");
         printf("|             5. Afficher les rendez-vous d'un contact          |\n");
-        printf("|             6. display tout les contacts listes 0 for now     |\n"); //Sauvegarder dans un fichier
+        printf("|             6. display tout les contacts listes 0 for now     |\n");
+        printf("|             7. Saugarder tous les contacts                    |\n");
         printf("|             0. Quitter                                        |\n");
         printf("-----------------------------------------------------------------\n");
 
@@ -83,11 +84,18 @@ void displayMenu(List_contact *listContact){
                 }
 
                 break;
+            case 7:
+
+                printf("Sauvegarde en cours...\n");
+                saveInFile( *listContact);
+                break;
             case 0:
-                printf("Au revoir !\n");
+                printf("Sauvegarde en cours...\n");
+                saveInFile( *listContact);
+                printf("\nAu revoir !\n");
                 break;
             default:
-                printf("Choix non valide. Veuillez réessayer.\n");
+                printf("Choix non valide. Veuillez reessayer.\n");
         }
 
     } while (choice != 0);

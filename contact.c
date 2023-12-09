@@ -380,7 +380,7 @@ void readNamesFromFile( List_contact *listContact){
     fclose(file);
 }
 void saveInFile(List_contact listContact){
-    printf("Ouverture du fichier Contact ou Recuperation du fichier Contact ...");
+    printf("Ouverture du fichier Contact ou Recuperation du fichier Contact ...\n");
     FILE* file = fopen("noms.txt", "w");
     if (file == NULL) {
         printf("Impossible d'ouvrir le fichier.\n");
@@ -395,7 +395,7 @@ void saveInFile(List_contact listContact){
 
     }
     fclose(file);
-    printf("Sauvegarde terminée !\n");
+    printf("\nSauvegarde terminee !\n");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
