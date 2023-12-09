@@ -38,17 +38,39 @@ void displayMenu(List_contact *listContact){
                 addNewContacttemp(listContact,new);
                 break;
             case 2:
-                //createRendezVous(listContact);
+                new= askContact(listContact);
+                if (new==NULL){
+                    printf("le contact n'existe pas");
+                    break;
+                }
+                addNewRendezVous(new);
                 break;
             case 3:
-//                deleteAppointment(listContact);
+                new= askContact(listContact);
+                if (new==NULL){
+                    printf("le contact n'existe pas");
+                    break;
+                }
+                int x;
+                printf("quel rendez vous voulez vous supprimer ?\n");
+                x=scanInt(0);
+                deleteRendezVous(new,x-1);
                 break;
             case 4:
-//                searchContact(listContact);
+                new=askContact(listContact);
+                if (new==NULL){
+                    printf("le contact n'existe pas");
+                    break;
+                }
+                displayContact(*new);
                 break;
             case 5:
-
-//                //displayRendezVous(*contactExists(listContact,contact));
+                new=askContact(listContact);
+                if (new==NULL){
+                    printf("le contact n'existe pas");
+                    break;
+                }
+                displayRendezVous(new);
                 break;
             case 6:
                 new = listContact->contact[0];
@@ -69,58 +91,6 @@ void displayMenu(List_contact *listContact){
         }
 
     } while (choice != 0);
-}
-int main() {
-
-
-//    timeSearch();
-//   timeSearch();
-////    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
-//   List_contact *listContact =createListContact();
-////    //ouvrir le fichier sauvegarder si il existe etcréer la liste des contacts
-//    Contact *contact=createContact();
-//    createRendezVous(contact);
-//    displayRendezVous(contact->rendez_vous);
-//    createRendezVous(contact);
-//    displayContact(*contact);
-//    readNamesFromFile( listContact);
-//    displayMenu(listContact);
-    //timeSearch();
-
-
-    List_contact *listContact = createListContact();
-//    readNamesFromFile( listContact);
-//    displayContact(*listContact->contact[0]);
-
-    Contact *newContact = createContact();
-    displayContact(*newContact);
-
-    // Ajouter le nouveau contact à la liste
-
-    addNewContact(listContact, newContact);
-//    Contact *newContact2 = createContact();
-//    displayContact(*newContact2);
-//
-//    // Ajouter le nouveau contact à la liste
-//
-//    addNewContact(listContact, newContact2);
-
-    displayRendezVous(newContact);
-
-    addNewRendezVous(newContact);
-
-    displayRendezVous(newContact);
-    addNewRendezVous(newContact);
-    displayRendezVous(newContact);
-
-  //  displayRendezVous(newContact);
-//    // Sauvegarder dans un fichier
-//    saveInFile(*listContact);
-//
-//    // Lecture à partir du fichier
-//    readNamesFromFile(listContact);
-
-    return 0;
 }
 
 
@@ -147,18 +117,18 @@ void testlistAligne(){
 void testTrie(){
     t_d_list *list = createEmptyList(5);
 
-    t_d_cell *cell1 = createCell(rand() % (100 - -100 + 1) + -100
+    t_d_cell *cell1 = createCell(rand() % 201 -100
             , 3);
     addCellInList(list, cell1);
-    t_d_cell *cell2 = createCell(rand() % (100 - -100 + 1) + -100
+    t_d_cell *cell2 = createCell(rand() % 201 -100
             , 2);
-    t_d_cell *cell3 = createCell(rand() % (100 - -100 + 1) + -100
+    t_d_cell *cell3 = createCell(rand() % 201 -100
             , 4);
-    t_d_cell *cell4 = createCell(rand() % (100 - -100 + 1) + -100000
+    t_d_cell *cell4 = createCell(rand() %201 -100
             , 4);
-    t_d_cell *cell5 = createCell(rand() % (100 - -100 + 1) + -100, 5);
-    t_d_cell *cell6 = createCell(rand() % (100 - -100 + 1) + -100, 5);
-    t_d_cell *cell7 = createCell(rand() % (100 - -100 + 1) + -100, 5);
+    t_d_cell *cell5 = createCell(rand() % 201 -100, 5);
+    t_d_cell *cell6 = createCell(rand() % 201 -100, 5);
+    t_d_cell *cell7 = createCell(rand() % 201 -100, 5);
     addCellInList(list, cell7);
     printf("Ajout de la valeur %d\n", cell1->value);
     displayList(list);
@@ -179,3 +149,63 @@ void testTrie(){
     // Afficher le contenu de la liste
     displayList(list);
 }
+
+
+int main() {
+    testlistAligne();
+    testTrie();
+//    timeSearch();
+
+////    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
+//   List_contact *listContact =createListContact();
+////    //ouvrir le fichier sauvegarder si il existe etcréer la liste des contacts
+//    Contact *contact=createContact();
+//    createRendezVous(contact);
+//    displayRendezVous(contact->rendez_vous);
+//    createRendezVous(contact);
+//    displayContact(*contact);
+//    readNamesFromFile( listContact);
+//    displayMenu(listContact);
+    //timeSearch();
+
+
+    List_contact *listContact = createListContact();
+    readNamesFromFile(listContact);
+//    readNamesFromFile( listContact);
+//    displayContact(*listContact->contact[0]);
+//    displayContact(*listContact->contact[1]);
+
+    displayMenu(listContact);
+
+
+//    Contact *newContact = createContact();
+//    displayContact(*newContact);
+//
+//    // Ajouter le nouveau contact à la liste
+//
+//    addNewContact(listContact, newContact);
+//    Contact *newContact2 = createContact();
+//    displayContact(*newContact2);
+//
+//    // Ajouter le nouveau contact à la liste
+//
+//    addNewContact(listContact, newContact2);
+
+//    displayRendezVous(newContact);
+//
+//    addNewRendezVous(newContact);
+//
+//    displayRendezVous(newContact);
+//    addNewRendezVous(newContact);
+//    displayRendezVous(newContact);
+
+  //  displayRendezVous(newContact);
+//    // Sauvegarder dans un fichier
+//    saveInFile(*listContact);
+//
+//    // Lecture à partir du fichier
+//    readNamesFromFile(listContact);
+
+    return 0;
+}
+

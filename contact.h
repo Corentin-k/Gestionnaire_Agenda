@@ -74,6 +74,8 @@ void searchContact(const List_contact *listContact);
 // Fonction pour créer un nouveau rendez-vous pour un contact
 Rendez_vous createRendezVous();
 
+Contact* askContact(List_contact* listContact);
+
 // Fonction pour mettre au bon endroit le rdv
 void addNewRendezVous(Contact *personne);
 

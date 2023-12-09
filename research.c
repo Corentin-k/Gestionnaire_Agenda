@@ -74,7 +74,7 @@ void timeSearch(){
 
         startTimer();
         for(int g=0;g<1000;g++){
-            rechercheClassique(list,rand() % (1000 - -1000 + 1) + -1000 );
+            rechercheClassique(list,rand() % 2000 + -1000 );
         }
         stopTimer();
         displayTime();
@@ -83,7 +83,7 @@ void timeSearch(){
 
         startTimer();
         for(int g=0;g<1000;g++){
-            rechercheInt(list,rand() % (1000 - -1000 + 1) + -1000);
+            rechercheInt(list,rand() % 2000 + -1000);
         }
         stopTimer();
         time_all_levels = getTimeAsString();
