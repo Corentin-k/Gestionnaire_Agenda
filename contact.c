@@ -343,7 +343,6 @@ void addNewContacttemp(List_contact *listContact, Contact *newContact)
 
 /////////////////////////////////////////FICHIER_SAUVEGARDE/////////////////////////////////////////
 
-
 void readNamesFromFile( List_contact *listContact){
     printf("Ouverture des contact ...\n");
     FILE* file = fopen("noms2008nat_txt.txt", "r");
@@ -360,24 +359,20 @@ void readNamesFromFile( List_contact *listContact){
         chaine[strcspn(chaine, "\n")] = '\0'; //Pour retirer le \n à la fin de la chaine
         //printf("%s", chaine);
         Contact* new =createEmptyContact();
-         printf("%s", chaine);
-        strcpy(name, chaine);
+        printf("%s", chaine);
+        strcpy(name, chaine); //on convertit chaque chaine en minuscule
         conversionminuscule(name);
         printf("%s", name);
 
-        new->nom = (char*)malloc(strlen(name) + 1);
+        new->nom = (char*)malloc(strlen(name) + 1); //on alloue de l'espace pour ajouter la chaine dans le champ new->nom
         strcpy(new->nom , name);
         new->prenom = NULL;
 
-        addNewContacttemp(listContact, new);
-
-
+        addNewContacttemp(listContact, new); // on ajoute le contact à la ligne
         i++;
     }printf("\nRecuperation terminée !\n");
 
-
-
-    fclose(file);
+    fclose(file);//on ferme le fichier
 }
 void saveInFile(List_contact listContact){
     printf("Ouverture du fichier Contact ou Recuperation du fichier Contact ...\n");
