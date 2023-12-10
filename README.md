@@ -1,8 +1,9 @@
 # Projet-L2-Algorithme et structure de données 2
  
-Par [@Corentin-k](https://github.com/Corentin-k)
+Par [@Corentin-k](https://github.com/Corentin-k), [@Nathan-P](https://github.com/nathp94) et [@Bastien-P](https://github.com/bouboumako)
 
 ### Ce projet vise à réaliser une application qui permet de gérer un agenda en utilisant une structure de données intermédiaire entre les listes chaînées et les arbres. 
+
 
 ---
 ## <u>Partie 1 - Implémentation des listes à niveaux – stockage d’entiers </u>
