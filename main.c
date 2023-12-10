@@ -5,7 +5,7 @@
 
 
 
-
+//Fonction pour afficher le menu
 void displayMenu(List_contact *listContact){
     int choice;
 
@@ -101,7 +101,7 @@ void displayMenu(List_contact *listContact){
     } while (choice != 0);
 }
 
-
+//Fonction d'exemple pour tester l'alignement des cellules
 void testlistAligne(){
     t_d_list *list = createEmptyList(5);
 
@@ -122,6 +122,8 @@ void testlistAligne(){
     // Afficher le contenu de la liste
     displayList(list);
 }
+
+//Fonction d'exemple pour tester le tri des cellules
 void testTrie(){
     t_d_list *list = createEmptyList(5);
 
@@ -162,57 +164,14 @@ void testTrie(){
 int main() {
     testlistAligne();
     testTrie();
-//    timeSearch();
+    timeSearch();
 
-////    printf("cette valeur est dans la liste :%d", rechercheclassique(&lis,20)); printf("clear %d",lis.max_levels);
-//   List_contact *listContact =createListContact();
-////    //ouvrir le fichier sauvegarder si il existe etcréer la liste des contacts
-//    Contact *contact=createContact();
-//    createRendezVous(contact);
-//    displayRendezVous(contact->rendez_vous);
-//    createRendezVous(contact);
-//    displayContact(*contact);
-//    readNamesFromFile( listContact);
-//    displayMenu(listContact);
-    //timeSearch();
+    List_contact *listContact = createListContact();  // Création de la liste de contact
+    /// Attention : Pour faire des tests on ne récupère que les 100 premiers retirer l'indice i dans la fonction pour récuperer tout les contacts
+    readNamesFromFile(listContact);                   // Lecture des noms dans le fichier et ajout dans la liste
 
+    displayMenu(listContact);                         // Affichage du menu
 
-    List_contact *listContact = createListContact();
-    readNamesFromFile(listContact);
-//    readNamesFromFile( listContact);
-//    displayContact(*listContact->contact[0]);
-//    displayContact(*listContact->contact[1]);
-
-    displayMenu(listContact);
-
-
-//    Contact *newContact = createContact();
-//    displayContact(*newContact);
-//
-//    // Ajouter le nouveau contact à la liste
-//
-//    addNewContact(listContact, newContact);
-//    Contact *newContact2 = createContact();
-//    displayContact(*newContact2);
-//
-//    // Ajouter le nouveau contact à la liste
-//
-//    addNewContact(listContact, newContact2);
-
-//    displayRendezVous(newContact);
-//
-//    addNewRendezVous(newContact);
-//
-//    displayRendezVous(newContact);
-//    addNewRendezVous(newContact);
-//    displayRendezVous(newContact);
-
-  //  displayRendezVous(newContact);
-//    // Sauvegarder dans un fichier
-//    saveInFile(*listContact);
-//
-//    // Lecture à partir du fichier
-//    readNamesFromFile(listContact);
 
     return 0;
 }

@@ -126,7 +126,7 @@ void addCellInList(t_d_list *list, t_d_cell *cell)
         t_d_cell* temp = list->heads[x];
         t_d_cell *prev = NULL; // pointeur vers la cellule precedente
         while (temp != NULL && temp->value < cell->value) {
-            // on cherche la position d'insertion de la cellule dans la liste au niveaud head[x]
+            // on cherche la position d'insertion de la cellule dans la liste au niveau head[x]
             // on s'arrete quand on trouve une valeur plus grande que celle de la cellule a inserer
             // ou quand on arrive a la fin de la liste (temp == NULL)
             prev = temp;
@@ -168,7 +168,7 @@ void ajoutreCursifList(t_d_list* list, int val, int niv,int puiss)
 }
 
 ///<summary>
-///Créer une liste : de 2^n cellules
+///Créer une liste : de 2^n cellules de manière itérative
 ///</summary>
 ///<param name="n">niveau de la liste</param>
 ///<returns>void</returns>

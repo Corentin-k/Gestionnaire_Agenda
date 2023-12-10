@@ -58,22 +58,19 @@ int rechercheInt(t_d_list* list, int val)
 
 void timeSearch(){
     srand(time(NULL));
-    FILE *log_file = fopen("log.txt","w");
+    FILE *log_file = fopen("log.txt","w");  // ouverture du fichier log.txt en mode écriture
     char format[] = "%d\t%s\t%s\n" ;
 
     char *time_lvl0;
     char *time_all_levels;
     for( int i=7;i<30 ;i++) {
 
-
         printf("en cours %d\n",i);
 
-        t_d_list *list = createListTrie(i);
-
-
+        t_d_list *list = createListTrie(i); // création d'une liste de taille 2^i
 
         startTimer();
-        for(int g=0;g<1000;g++){
+        for(int g=0;g<1000;g++){ // on fait 1000 fois la recherche classique
             rechercheClassique(list,rand() % 2000 + -1000 );
         }
         stopTimer();
@@ -82,18 +79,18 @@ void timeSearch(){
 
 
         startTimer();
-        for(int g=0;g<1000;g++){
+        for(int g=0;g<1000;g++){ // on fait 1000 fois la recherche intelligente
             rechercheInt(list,rand() % 2000 + -1000);
         }
         stopTimer();
         time_all_levels = getTimeAsString();
         displayTime();
 
-        fprintf(log_file, format, i, time_lvl0, time_all_levels);
+        fprintf(log_file, format, i, time_lvl0, time_all_levels); // on écrit dans le fichier log.txt les temps de recherche pour les deux types de recherche
         free(time_lvl0);
         free(time_all_levels);
         free(list);
     }
 
-    fclose(log_file);
+    fclose(log_file); // fermeture du fichier log.txt
 };

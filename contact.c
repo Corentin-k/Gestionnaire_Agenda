@@ -146,10 +146,6 @@ int compareRendezVous(Rendez_vous rdv1, Rendez_vous rdv2) {
     return 2;
 }
 
-
-
-
-
 void displayRendezVous(Contact *personne)
 {
     Rendez_vous temp = personne->rendez_vous;
@@ -233,6 +229,7 @@ Contact *contactExists(List_contact *listContact,Contact *contact){
     }
     return NULL;
 }
+
 List_contact *createListContact(){
     List_contact *listContact = malloc(sizeof(List_contact));
     listContact->contact = (Contact **)malloc(MAX_LEVEL * sizeof(Contact *));
@@ -241,6 +238,7 @@ List_contact *createListContact(){
     }
     return listContact;
 }
+
 Contact *createContact(){
     Contact *newContact = malloc(sizeof(Contact));
     printf("Saisir le nom du contact :\n>>>");
@@ -255,6 +253,7 @@ Contact *createContact(){
     return newContact;
 
 }
+
 Contact *createEmptyContact(){
     Contact *newContact = malloc(sizeof(Contact));
 
@@ -266,6 +265,105 @@ Contact *createEmptyContact(){
     return newContact;
 
 }
+
+void displayContact(Contact contact){
+
+    printf("--------------\n");
+    printf("|   Contact :                \n");
+    printf("|   Nom : %s\n",contact.nom);
+    printf("|   Prenom : %s\n",contact.prenom);
+    printf("|   Rendez-vous :\n");
+    printf("--------------\n");
+
+}
+
+//Fonction qui demande le nom et le prenom du contact et renvoie un pointeur vers le contact
+Contact* askContact(List_contact* listContact){
+    Contact *contact = createEmptyContact();
+    printf("Veuillez entrer le nom du contact :\n>>>");
+    contact->nom = scanString();
+    printf("\nVeuillez entrer le prenom du contact :\n>>>");
+    contact->prenom = scanString();
+    if(contactExists(listContact,contact)==NULL){
+        printf("Le contact n'existe pas\n");
+        free(contact->nom);
+        free(contact->prenom);
+        free(contact);
+        return NULL;
+    }
+    return contact;
+}
+
+
+void addNewContacttemp(List_contact *listContact, Contact *newContact)
+{
+    if (listContact->contact[0]==NULL) listContact->contact[0] = newContact;
+    else
+    {
+        Contact* temp = listContact->contact[0];
+        while (temp->next[0]!= NULL) { temp =  temp->next[0];}
+        temp->next[0] = newContact;
+   }
+}
+
+
+
+/////////////////////////////////////////FICHIER_SAUVEGARDE/////////////////////////////////////////
+
+void readNamesFromFile( List_contact *listContact){
+    printf("Ouverture des contact ...\n");
+    FILE* file = fopen("noms2008nat_txt.txt", "r");
+    if (file == NULL) {
+        printf("Impossible d'ouvrir le fichier.\n");
+        exit(EXIT_FAILURE);
+    }
+    printf("Recuperation des contact en cours ...");
+    char name[50];
+    char chaine[50] = ""; // Chaîne vide de taille TAILLE_MAX
+
+    /// Pour faire des tests on ne récupère que les 100 premiers
+    int i=0;
+    while (fgets(chaine, 50, file) != NULL && i!=100) // On lit le fichier tant qu'on ne reçoit pas d'erreur (NULL)
+    {
+        chaine[strcspn(chaine, "\n")] = '\0'; //Pour retirer le \n à la fin de la chaine
+        //printf("%s", chaine);
+        Contact* new =createEmptyContact();
+        printf("%s", chaine);
+        strcpy(name, chaine); //on convertit chaque chaine en minuscule
+        conversionminuscule(name);
+        printf("%s", name);
+
+        new->nom = (char*)malloc(strlen(name) + 1); //on alloue de l'espace pour ajouter la chaine dans le champ new->nom
+        strcpy(new->nom , name);
+        new->prenom = NULL;
+
+        addNewContacttemp(listContact, new); // on ajoute le contact à la ligne
+        i++;
+    }printf("\nRecuperation terminée !\n");
+
+    fclose(file);//on ferme le fichier
+}
+
+void saveInFile(List_contact listContact){
+    printf("Ouverture du fichier Contact ou Recuperation du fichier Contact ...\n");
+    FILE* file = fopen("noms.txt", "w");
+    if (file == NULL) {
+        printf("Impossible d'ouvrir le fichier.\n");
+        exit(EXIT_FAILURE);
+    }
+    Contact *temp = listContact.contact[0];
+    printf("Sauvegarde des contact ...");
+
+    while (temp != NULL ) {
+        fprintf(file, "%s\n", temp->nom);
+        temp = temp->next[0];
+
+    }
+    fclose(file);
+    printf("\nSauvegarde terminee !\n");
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //void displayList(List_contact list) {
 //
 //    Contact * temp, *prev;
@@ -297,100 +395,3 @@ Contact *createEmptyContact(){
 //    }
 //
 //}
-
-void    displayContact(Contact contact){
-
-    printf("--------------\n");
-    printf("|   Contact :                \n");
-    printf("|   Nom : %s\n",contact.nom);
-    printf("|   Prenom : %s\n",contact.prenom);
-    printf("|   Rendez-vous :\n");
-    printf("--------------\n");
-
-}
-
-
-Contact* askContact(List_contact* listContact){
-    Contact *contact = createEmptyContact();
-    printf("Veuillez entrer le nom du contact :\n>>>");
-    contact->nom = scanString();
-    printf("\nVeuillez entrer le prenom du contact :\n>>>");
-    contact->prenom = scanString();
-    if(contactExists(listContact,contact)==NULL){
-        printf("Le contact n'existe pas\n");
-        free(contact->nom);
-        free(contact->prenom);
-        free(contact);
-        return NULL;
-    }
-    return contact;
-}
-
-
-
-void addNewContacttemp(List_contact *listContact, Contact *newContact)
-{
-    if (listContact->contact[0]==NULL) listContact->contact[0] = newContact;
-    else
-    {
-        Contact* temp = listContact->contact[0];
-        while (temp->next[0]!= NULL) { temp =  temp->next[0];}
-        temp->next[0] = newContact;
-   }
-}
-
-
-
-/////////////////////////////////////////FICHIER_SAUVEGARDE/////////////////////////////////////////
-
-void readNamesFromFile( List_contact *listContact){
-    printf("Ouverture des contact ...\n");
-    FILE* file = fopen("noms2008nat_txt.txt", "r");
-    if (file == NULL) {
-        printf("Impossible d'ouvrir le fichier.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Recuperation des contact en cours ...");
-    char name[50];
-    char chaine[50] = ""; // Chaîne vide de taille TAILLE_MAX
-    int i=0;
-    while (fgets(chaine, 50, file) != NULL && i!=100) // On lit le fichier tant qu'on ne reçoit pas d'erreur (NULL)
-    {
-        chaine[strcspn(chaine, "\n")] = '\0'; //Pour retirer le \n à la fin de la chaine
-        //printf("%s", chaine);
-        Contact* new =createEmptyContact();
-        printf("%s", chaine);
-        strcpy(name, chaine); //on convertit chaque chaine en minuscule
-        conversionminuscule(name);
-        printf("%s", name);
-
-        new->nom = (char*)malloc(strlen(name) + 1); //on alloue de l'espace pour ajouter la chaine dans le champ new->nom
-        strcpy(new->nom , name);
-        new->prenom = NULL;
-
-        addNewContacttemp(listContact, new); // on ajoute le contact à la ligne
-        i++;
-    }printf("\nRecuperation terminée !\n");
-
-    fclose(file);//on ferme le fichier
-}
-void saveInFile(List_contact listContact){
-    printf("Ouverture du fichier Contact ou Recuperation du fichier Contact ...\n");
-    FILE* file = fopen("noms.txt", "w");
-    if (file == NULL) {
-        printf("Impossible d'ouvrir le fichier.\n");
-        exit(EXIT_FAILURE);
-    }
-    Contact *temp = listContact.contact[0];
-    printf("Sauvegarde des contact ...");
-
-    while (temp != NULL ) {
-        fprintf(file, "%s\n", temp->nom);
-        temp = temp->next[0];
-
-    }
-    fclose(file);
-    printf("\nSauvegarde terminee !\n");
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
