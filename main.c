@@ -164,7 +164,7 @@ void testTrie(){
 int main() {
     testlistAligne();
     testTrie();
-    timeSearch();
+//    timeSearch();
 
     List_contact *listContact = createListContact();  // Création de la liste de contact
     /// Attention : Pour faire des tests on ne récupère que les 100 premiers retirer l'indice i dans la fonction pour récuperer tout les contacts
